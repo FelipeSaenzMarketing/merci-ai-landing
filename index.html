@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>merci.ai · Menos trabajo manual, más crecimiento</title>
+  <meta name="description" content="merci.ai — Asesoría e implementación en Automatización e Inteligencia Artificial. Automatizaciones, agentes IA, webs que convierten y software a medida." />
+  <meta property="og:title" content="merci.ai · Menos trabajo manual, más crecimiento" />
+  <meta property="og:description" content="Menos trabajo manual, más crecimiento: automatizaciones, agentes de IA, webs que convierten y software a medida. Sin hype, solo implementación útil." />
+  <meta property="og:type" content="website" />
+  <link href="https://api.fontshare.com/v2/css?f[]=instrument-serif@400,400i&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"merci.ai","description":"Asesoría e implementación en Automatización e Inteligencia Artificial","areaServed":["Europe","LATAM"],"founder":{"@type":"Person","name":"Felipe Saenz"}}
+  </script>
+
+  <style>
+    /* ════════════════════════════════════════════════════════
+       DESIGN TOKENS — Identidad de marca (INMUTABLE)
+       Para editar colores, hazlo solo aquí.
+       ════════════════════════════════════════════════════════ */
+    :root, [data-theme="light"] {
+      --color-bg:          #FFFFFF;
+      --color-bg-soft:     #EEF0FF;
+      --color-text:        #1A1A2E;
+      --color-text-muted:  #6B7280;
+      --color-accent:      #3B82F6;
+      --color-accent-dark: #6366F1;
+      --color-divider:     #E0E0E0;
+      --color-tag-bg:      rgba(59,130,246,0.08);
+      --color-code-bg:     #1A1A2E;
+      --color-card:        #FFFFFF;
+      --color-card-border: rgba(26,26,46,0.07);
+      --color-nav-bg:      rgba(255,255,255,0.85);
+      --color-hover-soft:  rgba(59,130,246,0.05);
+
+      --shadow-sm: 0 1px 3px rgba(26,26,46,0.06);
+      --shadow-md: 0 6px 24px rgba(26,26,46,0.09);
+      --shadow-lg: 0 20px 60px rgba(26,26,46,0.13);
+      --glow-accent: 0 8px 28px rgba(59,130,246,0.28);
+
+      --radius-sm: .5rem;
+      --radius-md: .9rem;
+      --radius-lg: 1.35rem;
+      --radius-xl: 1.9rem;
+      --t: 220ms cubic-bezier(.16,1,.3,1);
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Satoshi', 'Inter', sans-serif;
+      --font: var(--font-body);
+      --content: 1140px;
+
+      --text-xs:   clamp(.75rem,  .72rem + .13vw, .875rem);
+      --text-sm:   clamp(.875rem, .84rem + .18vw, 1rem);
+      --text-base: clamp(1rem,    .96rem + .22vw, 1.1rem);
+      --text-lg:   clamp(1.15rem, 1.05rem + .55vw,1.45rem);
+      --text-xl:   clamp(1.65rem, 1.2rem + 1.7vw, 2.6rem);
+      --text-hero: clamp(2.7rem,  1.8rem + 3.8vw, 5.2rem);
+    }
+
+    /* ─── Dark mode tokens ─────────────────────────────────── */
+    [data-theme="dark"] {
+      --color-bg:          #0C0D1A;
+      --color-bg-soft:     #13152B;
+      --color-text:        #EEF0FF;
+      --color-text-muted:  #9CA3B8;
+      --color-accent:      #60A5FA;
+      --color-accent-dark: #A5B4FC;
+      --color-divider:     #23253F;
+      --color-tag-bg:      rgba(99,102,241,0.16);
+      --color-code-bg:     #07080F;
+      --color-card:        #14162C;
+      --color-card-border: rgba(238,240,255,0.08);
+      --color-nav-bg:      rgba(12,13,26,0.88);
+      --color-hover-soft:  rgba(238,240,255,0.06);
+
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.35);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.45);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.55);
+      --glow-accent: 0 10px 32px rgba(99,102,241,0.35);
+    }
+
+    /* ─── Reset & base ─────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{
+      font-family:var(--font);background:var(--color-bg);color:var(--color-text);
+      line-height:1.65;font-size:var(--text-base);
+      transition:background .45s ease,color .45s ease;
+      overflow-x:hidden
+    }
+    img,svg{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+    ul{list-style:none}
+    h1,h2,h3,h4{line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
+    p,li{text-wrap:pretty;max-width:72ch}
+    :focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:var(--radius-sm)}
+
+    .wrap{width:min(calc(100% - 2.5rem),var(--content));margin-inline:auto}
+    .section{padding:clamp(4rem,9vw,7rem) 0;position:relative}
+    .section-alt{background:var(--color-bg-soft);transition:background .45s ease}
+
+    /* ─── Fuentes display / body ───────────────────────────── */
+    h1,h2,h3,.heading,.hero-h1,.panel-title,.proof-box strong,.roi-result-val{
+      font-family:var(--font-display)
+    }
+    body,button,p,li,nav,.btn,.eyebrow,.subtext,.svc-tags span,.step-card p,
+    .testi blockquote,.faq-body{font-family:var(--font-body)}
+
+    /* ─── Typography helpers ───────────────────────────────── */
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.45rem 1rem;border-radius:999px;
+      background:rgba(59,130,246,0.08);color:var(--color-accent);
+      border:1px solid rgba(59,130,246,0.18);
+      font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase
+    }
+    [data-theme="dark"] .eyebrow{
+      background:rgba(99,102,241,0.12);color:var(--color-accent-dark);
+      border-color:rgba(99,102,241,0.25)
+    }
+    .heading{font-size:var(--text-xl);font-weight:400;letter-spacing:-.025em;max-width:16ch;margin-top:.85rem}
+    .subtext{margin-top:1rem;color:var(--color-text-muted);font-weight:500;max-width:58ch;font-size:var(--text-base)}
+    .heading em{
+      color:var(--color-accent);font-style:italic;
+      background:none;-webkit-text-fill-color:unset;
+      position:relative;display:inline-block
+    }
+    [data-theme="dark"] .heading em{color:var(--color-accent-dark)}
+    .heading em::after{
+      content:'';position:absolute;left:0;right:0;bottom:.04em;height:.07em;
+      border-radius:999px;
+      background:var(--color-accent);
+      opacity:.6;
+      transform:scaleX(0);transform-origin:left;
+      transition:transform .8s cubic-bezier(.16,1,.3,1) .35s
+    }
+    [data-theme="dark"] .heading em::after{background:var(--color-accent-dark)}
+    .heading.in em::after{transform:scaleX(1)}
+
+    /* ─── Buttons ──────────────────────────────────────────── */
+    .btn{
+      min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+      padding:.9rem 1.5rem;border-radius:999px;font-size:var(--text-sm);font-weight:700;
+      position:relative;overflow:hidden;
+      transition:transform var(--t),box-shadow var(--t),background var(--t),border-color var(--t),color var(--t)
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(0) scale(.98)}
+    .btn-primary{
+      background:var(--color-accent);
+      color:#fff;box-shadow:var(--glow-accent)
+    }
+    .btn-primary::after{display:none}
+    .btn-primary:hover{
+      background:var(--color-accent-dark);
+      transform:translateY(-2px);
+      box-shadow:0 14px 40px rgba(99,102,241,0.4)
+    }
+    .btn-ghost{background:transparent;border:1.5px solid var(--color-divider);color:var(--color-text)}
+    .btn-ghost:hover{border-color:rgba(59,130,246,.45);background:rgba(59,130,246,.06)}
+    .btn-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+
+    /* ─── Cards ────────────────────────────────────────────── */
+    .card{
+      background:var(--color-card);
+      border:1px solid var(--color-card-border);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-sm);
+      transition:background .45s ease,border-color .45s ease,box-shadow var(--t),transform var(--t)
+    }
+
+    /* ─── Reveal-on-scroll animations (IntersectionObserver) ─ */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .reveal.in{opacity:1;transform:none}
+    .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}
+    .reveal-d3{transition-delay:.24s}.reveal-d4{transition-delay:.32s}
+    .reveal-d5{transition-delay:.4s}.reveal-d6{transition-delay:.48s}
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+      .reveal{opacity:1;transform:none}
+    }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
+    .site-nav{
+      position:sticky;top:0;z-index:100;
+      background:var(--color-nav-bg);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--color-card-border);
+      transition:background .45s ease
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:76px}
+    .brand{display:flex;align-items:center;gap:.8rem;font-weight:800;font-size:1.2rem;letter-spacing:-.04em}
+    .brand .ai{
+      background:none;
+      -webkit-text-fill-color:var(--color-accent);
+      color:var(--color-accent);
+      font-style:italic
+    }
+    .brand-logo{
+      width:40px;height:40px;border-radius:8px;
+      background:var(--color-text);
+      display:grid;place-items:center;
+      box-shadow:none;
+      color:var(--color-bg);flex-shrink:0;font-weight:900;font-size:1.05rem;
+      font-style:italic;font-family:var(--font-display)
+    }
+    [data-theme="dark"] .brand-logo{
+      background:var(--color-bg-soft);
+      color:var(--color-accent);
+      border:1px solid var(--color-divider)
+    }
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-links a{
+      font-size:var(--text-sm);font-weight:600;padding:.5rem .75rem;border-radius:var(--radius-sm);
+      color:var(--color-text-muted);transition:color var(--t),background var(--t)
+    }
+    .nav-links a:hover{color:var(--color-text);background:var(--color-hover-soft)}
+    .nav-cta{display:flex;align-items:center;gap:.6rem}
+
+    /* Toggles: idioma + tema */
+    .toggle-pill{
+      display:inline-flex;align-items:center;gap:.15rem;
+      border:1.5px solid var(--color-divider);border-radius:999px;padding:.22rem;
+      transition:border-color var(--t)
+    }
+    .toggle-pill button{
+      padding:.32rem .7rem;border-radius:999px;font-size:.78rem;font-weight:700;
+      color:var(--color-text-muted);transition:background var(--t),color var(--t)
+    }
+    .toggle-pill button.active{
+      background:var(--color-accent);
+      color:#fff
+    }
+    .theme-btn{
+      width:42px;height:42px;border-radius:999px;display:grid;place-items:center;
+      border:1.5px solid var(--color-divider);color:var(--color-text-muted);
+      transition:border-color var(--t),color var(--t),transform var(--t)
+    }
+    .theme-btn:hover{border-color:rgba(59,130,246,.45);color:var(--color-accent);transform:rotate(18deg)}
+    .theme-btn svg{width:19px;height:19px}
+    [data-theme="light"] .icon-sun{display:none}
+    [data-theme="dark"]  .icon-moon{display:none}
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero-section{
+      padding:clamp(4.5rem,9vw,7rem) 0 clamp(4rem,8vw,5.5rem);
+      position:relative;overflow:hidden
+    }
+    /* Fondo del hero: dot grid sutil + glow que sigue el cursor */
+    .hero-dots{
+      position:absolute;inset:0;z-index:0;pointer-events:none;
+      --dot-color:rgba(26,26,46,0.10);
+      background-image:radial-gradient(var(--dot-color) 1.2px,transparent 1.2px);
+      background-size:20px 20px;
+      -webkit-mask-image:radial-gradient(ellipse 95% 90% at 50% 38%,#000 30%,transparent 80%);
+      mask-image:radial-gradient(ellipse 95% 90% at 50% 38%,#000 30%,transparent 80%)
+    }
+    [data-theme="dark"] .hero-dots{--dot-color:rgba(238,240,255,0.08)}
+    .hero-glow{
+      display:none;position:absolute;left:0;top:0;z-index:0;pointer-events:none;
+      width:36rem;height:36rem;border-radius:999px;
+      background:radial-gradient(circle,rgba(99,102,241,.26) 0%,rgba(59,130,246,.14) 42%,transparent 70%);
+      filter:blur(46px);transform:translate(-50%,-50%);
+      opacity:0;transition:opacity .6s ease;will-change:transform
+    }
+    [data-theme="dark"] .hero-glow{
+      background:radial-gradient(circle,rgba(99,102,241,.34) 0%,rgba(59,130,246,.18) 42%,transparent 70%)
+    }
+    @media(min-width:900px){.hero-glow{display:block}}
+    /* drift1/drift2 siguen en uso por .cta-band::before/::after */
+    @keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(-4rem,3rem) scale(1.12)}}
+    @keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(3rem,-2.5rem) scale(1.08)}}
+
+    .hero-grid{display:grid;gap:3.5rem;align-items:center;position:relative;z-index:1}
+    .hero-h1{font-size:var(--text-hero);font-weight:400;line-height:.95;letter-spacing:-.03em;max-width:12ch;margin-top:1.2rem}
+    .hero-h1 em{font-style:italic}
+    .hero-sub{margin-top:1.3rem;max-width:54ch;color:var(--color-text-muted);font-weight:500;font-size:var(--text-base)}
+    .hero-note{display:flex;align-items:center;gap:.55rem;margin-top:1.1rem;font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted)}
+    .hero-note .dot{width:8px;height:8px;border-radius:999px;background:#22C55E;animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}50%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+
+    .hero-proof{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:2.6rem}
+    .proof-box{
+      padding:1.1rem 1.25rem;background:var(--color-card);
+      border:1px solid var(--color-card-border);border-radius:var(--radius-md);
+      transition:transform var(--t),box-shadow var(--t),background .45s ease
+    }
+    .proof-box:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+    .proof-box strong{
+      display:block;
+      font-family:var(--font-display);font-weight:400;
+      font-size:clamp(1.8rem,1rem + 1.8vw,2.6rem);
+      letter-spacing:-.03em;line-height:1;white-space:nowrap;
+      background:none;
+      -webkit-text-fill-color:var(--color-accent);
+      color:var(--color-accent)
+    }
+    .proof-box strong span{
+      background:none;
+      -webkit-text-fill-color:inherit;
+      color:inherit;
+      font-size:inherit;font-weight:inherit;letter-spacing:inherit
+    }
+    .proof-box span{display:block;margin-top:.4rem;color:var(--color-text-muted);font-size:var(--text-xs);font-weight:600;line-height:1.35}
+
+    /* Panel terminal del hero */
+    .hero-panel{
+      padding:clamp(1.5rem,4vw,2.2rem);position:relative;
+      animation:float 7s ease-in-out infinite
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .panel-eyebrow{display:flex;align-items:center;gap:.55rem;margin-bottom:1.3rem}
+    .panel-dot{width:8px;height:8px;border-radius:999px;background:var(--color-accent);animation:pulse 2.4s ease-in-out infinite}
+    .panel-eyebrow span{font-size:var(--text-xs);font-weight:700;color:var(--color-accent-dark);text-transform:uppercase;letter-spacing:.05em}
+    [data-theme="dark"] .panel-eyebrow span{color:var(--color-accent-dark)}
+    .panel-title{font-size:var(--text-lg);font-family:var(--font-display);font-weight:400;letter-spacing:-.02em;line-height:1.2;max-width:20ch;margin-bottom:1.3rem}
+    .panel-stack{display:grid;gap:.8rem}
+    .panel-block{
+      padding:.95rem 1rem .95rem 1.1rem;background:var(--color-bg-soft);
+      border-radius:var(--radius-md);border:1px solid var(--color-card-border);
+      display:grid;gap:.3rem;transition:transform var(--t),background .45s ease
+    }
+    .panel-block:hover{transform:translateX(4px)}
+    .panel-block strong{font-size:.92rem;font-weight:700}
+    .panel-block span{font-size:.86rem;color:var(--color-text-muted);font-weight:500;line-height:1.4}
+
+    /* Efecto typewriter del panel: cursor parpadeante */
+    .tw-typing::after{
+      content:'';display:inline-block;width:2px;height:1em;
+      background:var(--color-accent);margin-left:3px;vertical-align:-.12em;
+      animation:tw-blink .75s step-end infinite
+    }
+    @keyframes tw-blink{50%{opacity:0}}
+
+    /* ─── MARQUEE de herramientas ──────────────────────────── */
+    .tools-band{padding:1.6rem 0;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);overflow:hidden}
+    .tools-label{text-align:center;font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1rem;max-width:unset;width:100%}
+    .marquee{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+    .marquee-track{display:flex;gap:2.8rem;padding-right:2.8rem;flex-shrink:0;align-items:center;animation:scroll 28s linear infinite}
+    .marquee:hover .marquee-track{animation-play-state:paused}
+    @keyframes scroll{to{transform:translateX(-100%)}}
+    .tool-chip{font-weight:700;font-size:.95rem;color:var(--color-text-muted);white-space:nowrap;display:flex;align-items:center;gap:.5rem}
+    .tool-chip svg{width:17px;height:17px;color:var(--chip,var(--color-accent));flex-shrink:0}
+
+    /* ─── PROBLEMA ─────────────────────────────────────────── */
+    .pain-grid{display:grid;gap:1.25rem;margin-top:2.5rem}
+    .pain-card{padding:1.75rem;border-left:none;border:1px solid var(--color-card-border);background:var(--color-card);border-radius:var(--radius-lg)}
+    .pain-card h3{font-size:1rem;font-weight:700;letter-spacing:-.02em}
+    .pain-card h3::before{
+      content:'';display:block;width:2rem;height:2px;
+      background:var(--color-accent);margin-bottom:.85rem;border-radius:999px
+    }
+    .pain-card p{margin-top:.55rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+
+    /* ─── SERVICIOS ────────────────────────────────────────── */
+    .services-intro{display:grid;gap:2.5rem;align-items:center;margin-bottom:3rem}
+    .services-grid{display:grid;gap:1.25rem}
+    .svc-card{padding:1.85rem;position:relative;overflow:hidden}
+    .svc-card::before{
+      content:'';position:absolute;inset:0 0 auto 0;height:1px;
+      background:var(--color-accent);
+      transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)
+    }
+    .svc-card:hover{box-shadow:var(--shadow-md);transform:translateY(-5px)}
+    .svc-card:hover::before{transform:scaleX(1)}
+    .svc-icon{
+      background:transparent;border:none;
+      width:auto;height:auto;border-radius:0;
+      margin-bottom:1.4rem;display:block;
+      transition:transform var(--t);
+      color:var(--color-accent)
+    }
+    [data-theme="dark"] .svc-icon{color:var(--color-accent)}
+    .svc-icon svg{width:1.75rem;height:1.75rem;stroke-width:1.5}
+    .svc-card:hover .svc-icon{transform:scale(1.1)}
+    .svc-card h3{font-size:1.08rem;font-weight:800;letter-spacing:-.025em}
+    .svc-card p{margin-top:.6rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+    .svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+    .svc-tags span{
+      padding:.28rem .7rem;border-radius:999px;
+      background:transparent;border:1px solid var(--color-divider);
+      color:var(--color-text-muted);font-size:.72rem;font-weight:600
+    }
+    .svc-note{margin-top:2.2rem;text-align:center;font-weight:600;color:var(--color-text-muted);font-size:var(--text-sm);max-width:unset}
+    .svc-note strong{color:var(--color-text)}
+
+    /* ─── PROCESO: timeline con progreso al hacer scroll ───── */
+    .steps-grid{display:grid;gap:1.25rem;margin-top:2.5rem;position:relative}
+    .step-card{padding:1.75rem;position:relative}
+    .steps-line{
+      position:absolute;background:var(--color-divider);border-radius:999px;
+      overflow:hidden;pointer-events:none;transition:background .45s ease
+    }
+    .steps-line-fill{
+      display:block;width:0;height:0;border-radius:inherit;
+      background:var(--color-accent);
+      transition:width .8s cubic-bezier(.16,1,.3,1),height .8s cubic-bezier(.16,1,.3,1)
+    }
+    .step-num{
+      display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:999px;
+      position:absolute;z-index:2;
+      background:var(--color-bg-soft);color:var(--color-text-muted);
+      border:2px solid var(--color-divider);
+      font-weight:900;font-size:1.05rem;transform:scale(.85);
+      transition:transform .5s cubic-bezier(.34,1.56,.64,1),background .45s ease,
+        color .45s ease,border-color .45s ease,box-shadow .45s ease
+    }
+    .step-card.step-active .step-num{
+      background:var(--color-accent);
+      color:#fff;border-color:transparent;transform:scale(1);
+      box-shadow:0 0 0 5px rgba(59,130,246,.16),0 8px 24px rgba(99,102,241,.4)
+    }
+    [data-theme="dark"] .step-card.step-active .step-num{
+      box-shadow:0 0 0 5px rgba(99,102,241,.28),0 8px 28px rgba(99,102,241,.55)
+    }
+    .step-card h3{font-size:1.02rem;font-weight:800}
+    .step-card p{margin-top:.55rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+
+    /* ─── SOBRE ────────────────────────────────────────────── */
+    .about-grid{display:grid;gap:3rem;align-items:start}
+    .about-points{display:grid;gap:.85rem;margin-top:1.5rem}
+    .about-point{display:flex;align-items:flex-start;gap:.85rem;font-weight:500;color:var(--color-text-muted)}
+    .about-point::before{content:'';width:8px;height:8px;border-radius:999px;background:var(--color-accent);margin-top:.55rem;flex-shrink:0}
+    /* Panel title dentro del about card — más pequeño que el heading de sección */
+    .about-grid .card .panel-title{
+      font-size:var(--text-base);font-weight:500;
+      font-family:var(--font-body);letter-spacing:-.01em;
+      line-height:1.4;margin-bottom:.85rem;max-width:unset
+    }
+    .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:1.5rem}
+    .metric{padding:.85rem .65rem;background:var(--color-bg-soft);border-radius:var(--radius-md);text-align:center;transition:background .45s ease}
+    .metric strong{display:block;font-size:1.1rem;font-weight:400;font-family:var(--font-display);letter-spacing:-.02em;color:var(--color-accent);line-height:1}
+    .metric span{display:block;margin-top:.35rem;font-size:.72rem;font-weight:500;color:var(--color-text-muted);line-height:1.35;overflow-wrap:break-word;hyphens:auto}
+
+    /* ─── TESTIMONIOS ──────────────────────────────────────── */
+    .testi-grid{display:grid;gap:1.25rem;margin-top:2.5rem}
+    .testi{padding:1.75rem;position:relative}
+    .testi::before{
+      content:'“';position:absolute;top:.4rem;right:1.2rem;font-size:4.5rem;font-weight:900;
+      color:var(--color-accent);opacity:.14;line-height:1;font-family:Georgia,serif
+    }
+    .testi blockquote{font-size:1.02rem;font-weight:700;letter-spacing:-.025em;line-height:1.35}
+    .testi p{margin-top:.85rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+    .testi-name{margin-top:1.25rem;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.7rem}
+    .testi-avatar{
+      width:38px;height:38px;border-radius:999px;flex-shrink:0;
+      background:var(--color-accent);
+      display:grid;place-items:center;color:#fff;font-weight:700;font-size:.85rem
+    }
+    .testi-name span span{display:block;font-weight:500;color:var(--color-text-muted);font-size:.8rem;margin-top:.15rem}
+
+    /* ─── FAQ ──────────────────────────────────────────────── */
+    .faq-grid{display:grid;gap:.85rem;margin-top:2.5rem}
+    details.faq{
+      background:var(--color-card);border:1px solid var(--color-card-border);border-radius:var(--radius-md);
+      overflow:hidden;transition:box-shadow var(--t),background .45s ease
+    }
+    details.faq[open]{box-shadow:var(--shadow-sm)}
+    details.faq summary{
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      padding:1.2rem 1.4rem;cursor:pointer;font-weight:700;font-size:.97rem;list-style:none
+    }
+    details.faq summary::-webkit-details-marker{display:none}
+    /* NUEVO: faq-animada — apertura suave + indicador en summary activo.
+       La clase .faq-anim la añade JS: sin JS, el details funciona nativo. */
+    details.faq.faq-anim .faq-body{
+      max-height:0;overflow:hidden;
+      transition:max-height .5s cubic-bezier(.16,1,.3,1)
+    }
+    details.faq summary{border-left:3px solid transparent;transition:border-color var(--t)}
+    details.faq[open] summary{border-left-color:var(--color-accent)}
+    .faq-icon{
+      width:28px;height:28px;border-radius:999px;border:1.5px solid var(--color-divider);
+      display:grid;place-items:center;flex-shrink:0;color:var(--color-accent);
+      font-size:1.15rem;font-weight:700;line-height:1;
+      transition:background var(--t),border-color var(--t),transform .35s ease
+    }
+    details.faq[open] .faq-icon{background:var(--color-accent);border-color:var(--color-accent);color:#fff;transform:rotate(45deg)}
+    .faq-body{padding:0 1.4rem 1.3rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm)}
+
+    /* ─── CTA FINAL ────────────────────────────────────────── */
+    .cta-band{
+      background:var(--color-text);
+      color:var(--color-bg);border-radius:var(--radius-xl);
+      padding:clamp(2.5rem,6vw,4.5rem) clamp(2rem,5vw,4rem);
+      position:relative;overflow:hidden
+    }
+    .cta-band::before{
+      content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")
+    }
+    .cta-band::after{display:none}
+    .cta-grid{display:grid;gap:2.5rem;align-items:center;position:relative;z-index:1}
+    .cta-band h2{font-size:var(--text-xl);font-weight:400;color:var(--color-bg);max-width:16ch}
+    .cta-band h2 em{
+      font-style:italic;
+      background:none;
+      -webkit-text-fill-color:var(--color-accent);
+      color:var(--color-accent)
+    }
+    .cta-band p{color:oklch(from var(--color-bg) l c h / 0.72);font-weight:500;margin-top:.85rem}
+    .cta-band .btn-ghost{border-color:rgba(255,255,255,.22);color:var(--color-bg)}
+    .cta-band .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+    .cta-side-title{font-size:var(--text-lg);font-weight:400;font-family:var(--font-display);color:var(--color-bg);line-height:1.2;margin-bottom:1.2rem}
+    [data-theme="dark"] .cta-band{
+      background:var(--color-bg-soft);
+      border:1px solid var(--color-divider);
+      color:var(--color-text)
+    }
+    [data-theme="dark"] .cta-band h2{color:var(--color-text)}
+    [data-theme="dark"] .cta-band p{color:var(--color-text-muted)}
+    [data-theme="dark"] .cta-side-title{color:var(--color-text)}
+    [data-theme="dark"] .cta-band .btn-ghost{border-color:var(--color-divider);color:var(--color-text)}
+    /* NUEVO: cta-social-proof — actividad reciente rotando con fade */
+    .cta-live{
+      display:flex;align-items:center;gap:.55rem;margin-top:1.2rem;
+      font-size:var(--text-xs);font-weight:600;color:rgba(255,255,255,.66)
+    }
+    .cta-live-dot{
+      width:8px;height:8px;border-radius:999px;background:#22C55E;flex-shrink:0;
+      animation:pulse 2s ease-in-out infinite
+    }
+    .cta-live-text{transition:opacity .35s ease}
+    .cta-live-text.fading{opacity:0}
+
+    /* ─── BOTÓN FLOTANTE WHATSAPP ──────────────────────────── */
+    .wa-float{
+      position:fixed;right:1.25rem;bottom:1.25rem;z-index:90;
+      width:58px;height:58px;border-radius:999px;
+      background:#25D366;color:#fff;display:grid;place-items:center;
+      box-shadow:0 10px 30px rgba(37,211,102,.4);
+      transition:transform var(--t),box-shadow var(--t)
+    }
+    .wa-float::before{
+      content:'';position:absolute;inset:0;border-radius:999px;
+      background:#25D366;opacity:.35;z-index:-1;
+      animation:wa-pulse 2.4s ease-out infinite
+    }
+    @keyframes wa-pulse{0%{transform:scale(1);opacity:.35}70%,100%{transform:scale(1.5);opacity:0}}
+    .wa-float:hover{transform:translateY(-3px) scale(1.07);box-shadow:0 16px 40px rgba(37,211,102,.5)}
+    .wa-float:active{transform:scale(.96)}
+    .wa-float svg{width:30px;height:30px}
+    @media(max-width:600px){.wa-float{right:1rem;bottom:1rem;width:54px;height:54px}}
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .site-footer{padding:2.5rem 0 3rem;border-top:1px solid var(--color-divider)}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+    .footer-brand{font-weight:800;font-size:1.05rem}
+    .footer-brand .ai{
+      background:none;
+      -webkit-text-fill-color:var(--color-accent);
+      color:var(--color-accent);font-style:italic
+    }
+    .footer-brand p{margin-top:.25rem;font-weight:500;color:var(--color-text-muted);font-size:var(--text-xs)}
+    .footer-links{display:flex;flex-wrap:wrap;gap:.25rem}
+    .footer-links a{font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);padding:.35rem .6rem;border-radius:var(--radius-sm);transition:color var(--t)}
+    .footer-links a:hover{color:var(--color-accent)}
+    .footer-copy{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:.25rem}
+
+    /* ─── Micro-interacciones hover ────────────────────────── */
+    .pain-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    /* step-card sin translateY: el círculo debe quedarse sobre la línea */
+    .step-card:hover{box-shadow:var(--shadow-md)}
+    .testi:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .metric{transition:transform var(--t),box-shadow var(--t),background .45s ease}
+    .metric:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+    details.faq:hover{border-color:rgba(59,130,246,.35)}
+    details.faq summary:hover .faq-icon{border-color:var(--color-accent);transform:scale(1.1)}
+    details.faq[open] summary:hover .faq-icon{transform:rotate(45deg) scale(1.1)}
+    .tool-chip{transition:color var(--t),transform var(--t)}
+    .tool-chip:hover{color:var(--chip,var(--color-accent));transform:translateY(-2px)}
+    .toggle-pill button:hover:not(.active){color:var(--color-text)}
+    .footer-links a:hover{transform:translateY(-1px)}
+    .brand:hover .brand-logo{transform:rotate(-8deg) scale(1.05)}
+    .brand-logo{transition:transform var(--t)}
+
+    /* ─── Glow hover en tarjetas (borde gradiente + halo) ──── */
+    @property --glow-angle{syntax:'<angle>';initial-value:115deg;inherits:false}
+    .svc-card,.pain-card,.testi{
+      outline:1.5px solid transparent;outline-offset:2px;
+      transition:background .45s ease,border-color .45s ease,
+        box-shadow var(--t),transform var(--t),outline-color var(--t)
+    }
+    .svc-card:hover,.pain-card:hover,.testi:hover{
+      border-color:rgba(59,130,246,0.22);
+      outline:none;
+      animation:none;
+      background:var(--color-card);
+      box-shadow:0 12px 40px rgba(59,130,246,0.1),var(--shadow-md)
+    }
+    [data-theme="dark"] .svc-card:hover,
+    [data-theme="dark"] .pain-card:hover,
+    [data-theme="dark"] .testi:hover{
+      border-color:rgba(99,102,241,0.28);
+      box-shadow:0 12px 44px rgba(99,102,241,0.18),var(--shadow-md)
+    }
+
+    /* NUEVO: roi-calculator — calculadora ROI interactiva */
+    .roi-grid{display:grid;gap:2.5rem;margin-top:2.5rem;align-items:start}
+    .roi-sliders{display:flex;flex-direction:column;gap:1.5rem}
+    .roi-slider-group{display:flex;flex-direction:column;gap:.55rem}
+    .roi-slider-label{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:var(--text-sm)}
+    .roi-slider-val{
+      background:var(--color-accent);color:#fff;
+      padding:.15rem .65rem;border-radius:999px;
+      font-size:var(--text-xs);font-weight:800;min-width:4ch;text-align:center
+    }
+    .roi-slider{
+      -webkit-appearance:none;appearance:none;
+      width:100%;height:6px;border-radius:999px;
+      background:var(--color-divider);outline:none;cursor:pointer;transition:background .3s ease
+    }
+    .roi-slider::-webkit-slider-thumb{
+      -webkit-appearance:none;appearance:none;
+      width:22px;height:22px;border-radius:999px;
+      background:var(--color-accent);
+      cursor:pointer;box-shadow:0 2px 10px rgba(99,102,241,.4);
+      border:2px solid #fff;transition:transform .2s ease
+    }
+    .roi-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+    .roi-slider::-moz-range-thumb{
+      width:22px;height:22px;border-radius:999px;border:2px solid #fff;
+      background:var(--color-accent);
+      cursor:pointer;box-shadow:0 2px 10px rgba(99,102,241,.4)
+    }
+    .roi-results{
+      background:var(--color-card);border:1px solid var(--color-card-border);
+      border-radius:var(--radius-lg);padding:clamp(1.5rem,4vw,2.2rem);box-shadow:var(--shadow-sm)
+    }
+    .roi-result-row{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:.8rem 0;border-bottom:1px solid var(--color-divider);gap:1rem
+    }
+    .roi-result-row:last-child{border-bottom:0}
+    .roi-result-label{font-weight:600;font-size:var(--text-sm);color:var(--color-text-muted);display:flex;align-items:center;gap:.55rem}
+    .roi-icon{
+      display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;
+      border-radius:var(--radius-sm);background:var(--color-tag-bg);color:var(--color-accent-dark)
+    }
+    [data-theme="dark"] .roi-icon{background:rgba(99,102,241,.14);color:var(--color-accent-dark)}
+    .roi-icon svg{width:14px;height:14px}
+    .roi-result-val{font-weight:400;font-size:1.15rem;letter-spacing:-.03em;color:var(--color-text)}
+    .roi-result-val.positive{color:#16A34A}
+    [data-theme="dark"] .roi-result-val.positive{color:#4ADE80}
+    .roi-payback-chip{
+      display:inline-block;background:var(--color-tag-bg);color:var(--color-accent);
+      padding:.2rem .75rem;border-radius:999px;font-weight:700;font-size:var(--text-xs)
+    }
+    [data-theme="dark"] .roi-payback-chip{color:var(--color-accent-dark)}
+    .roi-bar-wrap{margin-top:1.5rem}
+    .roi-bar-label{
+      display:flex;justify-content:space-between;
+      font-weight:700;font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:.45rem
+    }
+    .roi-bar-track{height:10px;background:var(--color-divider);border-radius:999px;overflow:hidden}
+    .roi-bar-fill{
+      height:100%;width:0;border-radius:inherit;
+      background:var(--color-accent);
+      transition:width 1.1s cubic-bezier(.16,1,.3,1)
+    }
+    .roi-microcopy{
+      margin-top:1.1rem;padding:.75rem 1rem;border-radius:var(--radius-md);
+      font-size:var(--text-xs);font-weight:600;line-height:1.5;
+      background:rgba(59,130,246,.08);color:var(--color-accent);
+      border-left:3px solid var(--color-accent);
+      transition:opacity .35s ease
+    }
+    [data-theme="dark"] .roi-microcopy{color:var(--color-accent-dark);background:rgba(99,102,241,.1)}
+    .roi-microcopy.fading{opacity:0}
+
+    /* NUEVO: about-profile — foto + bio del fundador en #nosotros */
+    .about-profile{display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .about-photo-wrap{position:relative;display:inline-block;align-self:center}
+    .about-photo{
+      width:100%;max-width:240px;aspect-ratio:1/1;
+      border-radius:var(--radius-xl);object-fit:cover;object-position:center top;
+      display:block;
+      box-shadow:0 0 0 3px var(--color-bg),0 0 0 5px var(--color-accent),0 8px 32px rgba(99,102,241,.22);
+      transform:scale(.95);opacity:0;
+      transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .7s cubic-bezier(.16,1,.3,1)
+    }
+    .about-photo.in{transform:scale(1);opacity:1}
+    .about-badge{
+      position:absolute;bottom:.75rem;right:.75rem;
+      background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.5);border-radius:999px;
+      padding:.3rem .8rem;font-size:var(--text-xs);font-weight:700;
+      color:var(--color-text);white-space:nowrap;box-shadow:0 4px 14px rgba(26,26,46,.14)
+    }
+    [data-theme="dark"] .about-badge{
+      background:rgba(20,22,44,.82);border-color:rgba(238,240,255,.14)
+    }
+    .about-bio{text-align:center;max-width:260px}
+    .about-bio strong{
+      display:block;font-family:var(--font-display);font-weight:400;
+      font-size:1.15rem;letter-spacing:-.02em;line-height:1.1
+    }
+    .about-bio em{
+      display:block;font-style:normal;font-size:var(--text-xs);
+      font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--color-accent);margin-top:.3rem;margin-bottom:.75rem
+    }
+    .about-bio p{font-size:var(--text-xs);font-weight:400;color:var(--color-text-muted);line-height:1.7}
+    .about-social{display:flex;gap:.6rem;margin-top:.85rem;justify-content:center;flex-wrap:wrap}
+    .about-social .btn-ghost{
+      padding:.4rem .9rem;font-size:var(--text-xs);font-weight:700;
+      display:inline-flex;align-items:center;gap:.4rem;border-radius:999px;min-height:unset
+    }
+    .about-social svg{width:14px;height:14px;flex-shrink:0}
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media(min-width:900px){
+      .hero-grid{grid-template-columns:1.1fr .95fr}
+      .services-intro{grid-template-columns:1fr 1fr}
+      .services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pain-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      /* Timeline horizontal: línea arriba, círculos sobre ella */
+      .steps-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:4rem}
+      .steps-line{top:calc(1.3rem - 1.5px);left:calc(12.5% - .47rem);right:calc(12.5% - .47rem);height:3px}
+      .step-num{top:-4rem;left:calc(50% - 1.3rem)}
+      .about-grid{grid-template-columns:1fr 1fr}
+      .about-grid.about-3col{grid-template-columns:300px 1fr;align-items:center}
+      .roi-grid{grid-template-columns:1fr 1fr}
+      .testi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .faq-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .cta-grid{grid-template-columns:1.2fr .85fr}
+    }
+    @media(max-width:899px){
+      .nav-links{display:none}
+      .hero-proof{grid-template-columns:1fr 1fr}
+      /* Timeline vertical: línea a la izquierda */
+      .steps-grid{padding-left:3.4rem}
+      .steps-line{left:calc(1.3rem - 1.5px);top:2.6rem;bottom:3.5rem;width:3px}
+      .step-num{left:-3.4rem;top:1.3rem}
+    }
+    @media(max-width:600px){
+      .hero-proof{grid-template-columns:1fr 1fr}
+      .metrics{grid-template-columns:1fr 1fr}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+      .nav-cta .btn{display:none}
+      .nav-inner{min-height:64px}
+      /* CTAs a ancho completo: fáciles de tocar con el pulgar */
+      .btn-row{flex-direction:column;align-items:stretch}
+      .btn-row .btn{width:100%}
+      .hero-panel{animation:none}
+      .hero-dots{background-size:22px 22px}
+      .proof-box{padding:.95rem 1rem}
+      .svc-card,.step-card,.testi,.pain-card{padding:1.4rem}
+    }
+    @media(max-width:380px){
+      .hero-proof{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Skip link -->
+<a href="#main" style="position:absolute;left:-9999px;top:auto;z-index:200;padding:.5rem 1rem;background:var(--color-accent);color:#fff;border-radius:var(--radius-md)" data-i18n="skip">Ir al contenido</a>
+
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="merci.ai — inicio">
+      <span class="brand-logo" aria-hidden="true">m</span>
+      <span>merci<span class="ai">.ai</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="#servicios" data-i18n="nav_services">Servicios</a>
+      <a href="#proceso" data-i18n="nav_process">Proceso</a>
+      <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="toggle-pill" role="group" aria-label="Idioma / Language">
+        <button id="lang-es" class="active" aria-pressed="true">ES</button>
+        <button id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <button class="theme-btn" id="theme-toggle" aria-label="Cambiar modo oscuro / claro">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <a class="btn btn-primary" href="#cta" data-i18n="nav_cta">Agenda una llamada</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══ HERO ═════════════════════════════════════════════════ -->
+<section class="hero-section" id="top" aria-label="Presentación">
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow" data-i18n="hero_eyebrow">✦&nbsp;&nbsp;Automatización e IA para negocios reales</span>
+      <h1 class="hero-h1" data-i18n-html="hero_h1">Menos trabajo manual. Más <em>crecimiento</em>.</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Cada semana se van horas en tareas que la tecnología puede hacer sola. Diseñamos automatizaciones, agentes de IA y sistemas digitales que recuperan ese tiempo y lo convierten en ventas — sin tecnicismos ni promesas vacías.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#cta" data-i18n="hero_cta1">Empieza con un diagnóstico gratis</a>
+        <a class="btn btn-ghost" href="#servicios" data-i18n="hero_cta2">Ver servicios</a>
+      </div>
+      <p class="hero-note"><span class="dot"></span><span data-i18n="hero_note">Respuesta rápida · Diagnóstico gratuito · Sin compromiso</span></p>
+      <div class="hero-proof" aria-label="Métricas clave">
+        <div class="proof-box"><strong><span class="counter" data-target="50">0</span>+</strong><span data-i18n="proof1">automatizaciones e integraciones implementadas</span></div>
+        <div class="proof-box"><strong>24/7</strong><span data-i18n="proof2">tus sistemas atienden, responden y venden sin parar</span></div>
+        <div class="proof-box"><strong><span data-i18n="proof3_num">0 hype</span></strong><span data-i18n="proof3">solo implementaciones útiles, medibles y mantenibles</span></div>
+        <div class="proof-box"><strong>ES · EN · DE</strong><span data-i18n="proof4">clientes en Europa y Latinoamérica, en tu idioma</span></div>
+      </div>
+    </div>
+
+    <aside class="card hero-panel reveal in reveal-d2" aria-label="Panel de sistema">
+      <div class="panel-eyebrow"><span class="panel-dot"></span><span data-i18n="panel_eyebrow">Sistema en marcha</span></div>
+      <p class="panel-title" data-i18n="panel_title">Tu negocio conectado de la captación al cierre, desde el día uno.</p>
+      <div class="panel-stack">
+        <div class="panel-block">
+          <strong data-i18n="panel_b1_t">Captación</strong>
+          <span data-i18n="panel_b1_d">Web, formularios y WhatsApp conectados a un seguimiento automático que no deja escapar leads.</span>
+        </div>
+        <div class="panel-block">
+          <strong data-i18n="panel_b2_t">Operación</strong>
+          <span data-i18n="panel_b2_d">Agentes IA y flujos que responden, cotizan y agendan mientras tú te dedicas a lo importante.</span>
+        </div>
+        <div class="panel-block">
+          <strong data-i18n="panel_b3_t">Crecimiento</strong>
+          <span data-i18n="panel_b3_d">Dashboards y reporting automático para decidir con datos reales, no con intuición.</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ MARQUEE HERRAMIENTAS ═════════════════════════════════ -->
+<div class="tools-band" aria-label="Herramientas">
+  <p class="tools-label" data-i18n="tools_label">Construimos con las herramientas que ya mueven tu negocio</p>
+  <div class="marquee">
+    <div class="marquee-track" aria-hidden="true">
+      <span class="tool-chip" style="--chip:#D97757"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h12v12H6zM2 8h4v4H2zM18 8h4v4h-4zM7 16h2v6H7zM10 16h2v6h-2zM13 16h2v6h-2zM16 16h2v6h-2z"/><rect x="8" y="6.5" width="3" height="3" fill="#0C0D1A"/><rect x="13" y="6.5" width="3" height="3" fill="#0C0D1A"/></svg>Claude</span>
+      <span class="tool-chip" style="--chip:#10A37F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"/><circle cx="12" cy="12" r="3"/></svg>OpenAI</span>
+      <span class="tool-chip" style="--chip:#EA4B71"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="4.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19.5" cy="12" r="2"/><path d="M6.5 12h3.5m4 0h3.5"/></svg>n8n</span>
+      <span class="tool-chip" style="--chip:#A259FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L4 14h6l-1 7 9-11h-6l1-7z"/></svg>Make</span>
+      <span class="tool-chip" style="--chip:#25D366"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4.4-4 8-9 8-1.5 0-2.9-.3-4.1-.9L3 20l1-4C3.4 14.8 3 13.4 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg>WhatsApp API</span>
+      <span class="tool-chip" style="--chip:#FCB400"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 11h16M12 11v8"/></svg>Airtable</span>
+      <span class="tool-chip" style="--chip:#0F9D58"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h6"/></svg>Google Sheets</span>
+      <span class="tool-chip" style="--chip:#3776AB"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>Python</span>
+      <span class="tool-chip" style="--chip:#006BFF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>Calendly</span>
+      <span class="tool-chip" style="--chip:#FF7A59"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg>HubSpot</span>
+      <span class="tool-chip" style="--chip:var(--color-text)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8z"/></svg>Notion</span>
+      <span class="tool-chip" style="--chip:#FF4F00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16M6.3 6.3l11.4 11.4M17.7 6.3L6.3 17.7"/></svg>Zapier</span>
+    </div>
+    <!-- La segunda pista se duplica por JS para el loop infinito -->
+    <div class="marquee-track" aria-hidden="true"></div>
+  </div>
+</div>
+
+<!-- ══ PROBLEMA ═════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="pain-title">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-i18n="pain_eyebrow">¿Te suena?</span>
+    <h2 class="heading reveal" id="pain-title" data-i18n-html="pain_title">Tu tiempo se va en tareas que <em>no deberían existir</em>.</h2>
+    <div class="pain-grid">
+      <article class="card pain-card reveal reveal-d1">
+        <h3 data-i18n="pain1_t">Horas perdidas en lo repetitivo</h3>
+        <p data-i18n="pain1_d">Copiar datos, responder lo mismo, perseguir cotizaciones. Cada semana se van horas en tareas que una máquina haría mejor y sin quejarse.</p>
+      </article>
+      <article class="card pain-card reveal reveal-d2">
+        <h3 data-i18n="pain2_t">Clientes que se escapan</h3>
+        <p data-i18n="pain2_d">Un lead que escribe a las 11 de la noche y nadie responde es una venta que se fue con la competencia. La velocidad de respuesta es dinero.</p>
+      </article>
+      <article class="card pain-card reveal reveal-d3">
+        <h3 data-i18n="pain3_t">Herramientas que no se hablan</h3>
+        <p data-i18n="pain3_d">Tu web por un lado, el Excel por otro, WhatsApp por el suyo. Sin conexión entre ellas, tú eres el integrador humano — y eso no escala.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICIOS ════════════════════════════════════════════ -->
+<section class="section section-alt" id="servicios" aria-labelledby="svc-title">
+  <div class="wrap">
+    <div class="services-intro">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="svc_eyebrow">Servicios</span>
+        <h2 class="heading" id="svc-title" data-i18n-html="svc_title">Lo repetitivo se automatiza. Lo importante <em>se potencia</em>.</h2>
+      </div>
+      <p class="subtext reveal reveal-d1" style="margin-top:0" data-i18n="svc_sub">Nada de demos que mueren en una carpeta. Diseñamos e implementamos sistemas que viven dentro de tu negocio, conectados con las herramientas que ya usas, y te los entregamos documentados para que sean tuyos de verdad.</p>
+    </div>
+    <div class="services-grid">
+      <article class="card svc-card reveal">
+        <!-- workflow: nodos conectados = proceso automatizado -->
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="7" height="7" rx="1.2"/><rect x="15" y="2" width="7" height="7" rx="1.2"/><rect x="8.5" y="15" width="7" height="7" rx="1.2"/><path d="M5.5 9v2a3.5 3.5 0 0 0 3.5 3.5h6A3.5 3.5 0 0 0 18.5 11V9"/><line x1="12" y1="11.5" x2="12" y2="15"/></svg>
+        </div>
+        <h3 data-i18n="svc1_t">Automatización de procesos</h3>
+        <p data-i18n="svc1_d">Capturamos leads, enviamos cotizaciones, calificamos prospectos y agendamos citas por ti. Conectamos tus herramientas para que el trabajo fluya de punta a punta, solo.</p>
+        <div class="svc-tags">
+          <span data-i18n="svc1_tag1">Leads en automático</span>
+          <span data-i18n="svc1_tag2">Cotizaciones al instante</span>
+          <span data-i18n="svc1_tag3">Seguimiento sin fugas</span>
+        </div>
+      </article>
+      <article class="card svc-card reveal reveal-d1">
+        <!-- cpu: chip con pines = agente/IA -->
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+        </div>
+        <h3 data-i18n="svc2_t">Asistentes y agentes de IA</h3>
+        <p data-i18n="svc2_d">Un agente entrenado con el conocimiento de tu negocio que conversa con tus clientes, resuelve dudas y agenda citas a cualquier hora — en tu web o en tu WhatsApp.</p>
+        <div class="svc-tags">
+          <span data-i18n="svc2_tag1">Agente de WhatsApp</span>
+          <span data-i18n="svc2_tag2">Disponible 24/7</span>
+          <span data-i18n="svc2_tag3">Integrado a tu CRM</span>
+        </div>
+      </article>
+      <article class="card svc-card reveal reveal-d2">
+        <!-- layout: estructura de página web = landing/funnel -->
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <h3 data-i18n="svc3_t">Webs y funnels de venta</h3>
+        <p data-i18n="svc3_d">Páginas construidas para una sola cosa: convertir. De la landing de tu servicio al funnel completo, con diseño elegante, carga rápida y resultados que puedes medir.</p>
+        <div class="svc-tags">
+          <span data-i18n="svc3_tag1">Landings que convierten</span>
+          <span data-i18n="svc3_tag2">Funnels completos</span>
+          <span data-i18n="svc3_tag3">Diseño medible</span>
+        </div>
+      </article>
+      <article class="card svc-card reveal reveal-d3">
+        <!-- layers: capas apiladas = software a medida -->
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <h3 data-i18n="svc4_t">Sistemas y software propio</h3>
+        <p data-i18n="svc4_d">Cuando ninguna herramienta genérica encaja, la construimos: un CRM hecho para ti, dashboards de control y herramientas internas que se adaptan a tu operación — y no al revés.</p>
+        <div class="svc-tags">
+          <span data-i18n="svc4_tag1">CRM hecho para ti</span>
+          <span data-i18n="svc4_tag2">Dashboards de control</span>
+          <span data-i18n="svc4_tag3">Operación simplificada</span>
+        </div>
+      </article>
+    </div>
+    <p class="svc-note reveal" data-i18n-html="svc_note">¿Tu caso es distinto? Mejor. <strong>Cuéntanoslo y diseñamos la solución contigo.</strong></p>
+  </div>
+</section>
+
+<!-- NUEVO: roi-calculator ═══════════════════════════════════ -->
+<section class="section section-alt roi-section" id="roi-calculator" aria-labelledby="roi-title">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-i18n="roi_eyebrow">Calcula tu ahorro</span>
+    <h2 class="heading reveal" id="roi-title" data-i18n="roi_title">¿Cuántas horas (y dólares) estás perdiendo cada semana?</h2>
+    <div class="roi-grid">
+      <!-- Sliders -->
+      <div class="roi-sliders reveal reveal-d1">
+        <div class="roi-slider-group">
+          <label class="roi-slider-label" for="roi-hours">
+            <span data-i18n="roi_hours_label">Horas repetitivas por semana</span>
+            <span class="roi-slider-val" id="roi-hours-val">10h</span>
+          </label>
+          <input class="roi-slider" type="range" id="roi-hours" min="1" max="40" value="10" step="1" aria-valuemin="1" aria-valuemax="40" aria-valuenow="10">
+        </div>
+        <div class="roi-slider-group">
+          <label class="roi-slider-label" for="roi-rate">
+            <span data-i18n="roi_rate_label">Valor de tu hora ($)</span>
+            <span class="roi-slider-val" id="roi-rate-val">$50</span>
+          </label>
+          <input class="roi-slider" type="range" id="roi-rate" min="10" max="200" value="50" step="5" aria-valuemin="10" aria-valuemax="200" aria-valuenow="50">
+        </div>
+        <!-- Barra de progreso -->
+        <div class="roi-bar-wrap">
+          <div class="roi-bar-label">
+            <span data-i18n="roi_bar_label">Tiempo recuperado con automatización</span>
+            <span data-i18n="roi_bar_pct">85%</span>
+          </div>
+          <div class="roi-bar-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+            <div class="roi-bar-fill" id="roi-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Resultados -->
+      <div class="roi-results reveal reveal-d2">
+        <div class="roi-result-row">
+          <span class="roi-result-label">
+            <span class="roi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <span data-i18n="roi_cost_label">Coste actual por mes</span>
+          </span>
+          <span class="roi-result-val" id="roi-cost">$2,000</span>
+        </div>
+        <div class="roi-result-row">
+          <span class="roi-result-label">
+            <span class="roi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </span>
+            <span data-i18n="roi_auto_label">Con automatización (85% recuperado)</span>
+          </span>
+          <span class="roi-result-val" id="roi-auto">$300</span>
+        </div>
+        <div class="roi-result-row">
+          <span class="roi-result-label">
+            <span class="roi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </span>
+            <span data-i18n="roi_save_label">Ahorro mensual estimado</span>
+          </span>
+          <span class="roi-result-val positive" id="roi-save">$1,700</span>
+        </div>
+        <div class="roi-result-row">
+          <span class="roi-result-label">
+            <span class="roi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
+            <span data-i18n="roi_payback_label">Payback estimado</span>
+          </span>
+          <span class="roi-payback-chip" id="roi-payback-val">&lt; 60 días</span>
+        </div>
+        <div class="roi-microcopy" id="roi-microcopy" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESO ══════════════════════════════════════════════ -->
+<section class="section" id="proceso" aria-labelledby="process-title">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-i18n="process_eyebrow">Cómo trabajamos</span>
+    <h2 class="heading reveal" id="process-title" data-i18n-html="process_title">De la primera llamada al sistema funcionando, <em>sin fricción</em>.</h2>
+    <div class="steps-grid">
+      <div class="steps-line" aria-hidden="true"><span class="steps-line-fill"></span></div>
+      <article class="card step-card reveal">
+        <span class="step-num">1</span>
+        <h3 data-i18n="step1_t">Nos cuentas tu caso</h3>
+        <p data-i18n="step1_d">Una llamada gratuita de 30 minutos. Nos explicas qué te quita tiempo o dónde pierdes clientes. Sin tecnicismos.</p>
+      </article>
+      <article class="card step-card reveal reveal-d1">
+        <span class="step-num">2</span>
+        <h3 data-i18n="step2_t">Te proponemos la solución</h3>
+        <p data-i18n="step2_d">Recibes una propuesta clara: qué construimos, qué resuelve, cuánto cuesta y cuándo está listo. Sin letra pequeña.</p>
+      </article>
+      <article class="card step-card reveal reveal-d2">
+        <span class="step-num">3</span>
+        <h3 data-i18n="step3_t">Lo construimos e implementamos</h3>
+        <p data-i18n="step3_d">Trabajamos por fases con validación en cada paso. Ves avances reales desde la primera semana, no al final.</p>
+      </article>
+      <article class="card step-card reveal reveal-d3">
+        <span class="step-num">4</span>
+        <h3 data-i18n="step4_t">Te lo entregamos funcionando</h3>
+        <p data-i18n="step4_d">Sistema en marcha, documentado y explicado. Tu equipo lo entiende y lo mantiene sin depender de nadie.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NOSOTROS ═════════════════════════════════════════════ -->
+<section class="section section-alt" id="nosotros" aria-labelledby="about-title">
+  <div class="wrap about-grid about-3col">
+    <!-- NUEVO: about-profile — foto + bio del fundador -->
+    <div class="about-profile reveal">
+      <div class="about-photo-wrap">
+        <img class="about-photo" src="Foto_Felipe_Saenz.jpeg?v=2" alt="Felipe Sáenz, Fundador de merci.ai" width="240" height="240" loading="lazy">
+      </div>
+      <div class="about-bio">
+        <strong data-i18n="bio_name">Felipe Sáenz</strong>
+        <em data-i18n="bio_role">Fundador · merci.ai</em>
+        <p data-i18n="bio_text">Especialista en automatización, IA y diseño digital con base en Alemania. Trabajo en la intersección entre marketing, tecnología y sistemas — construyendo soluciones que no solo funcionan, sino que el equipo entiende y mantiene. Atiendo en español, inglés y alemán.</p>
+        <div class="about-social">
+          <a href="#" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span data-i18n="bio_linkedin">LinkedIn</span>
+          </a>
+          <a href="mailto:hola@merci.ai" class="btn btn-ghost" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+            <span data-i18n="bio_email">Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="about_eyebrow">Detrás de merci.ai</span>
+      <h2 class="heading" id="about-title" data-i18n-html="about_title">Tecnología seria, trato <em>cercano</em>.</h2>
+      <p class="subtext" data-i18n="about_sub">merci.ai nace de una idea simple: la IA no debería ser un lujo de grandes empresas ni una demo impresionante que nadie usa. Debería ser infraestructura que trabaja por ti todos los días — clara, mantenible y rentable.</p>
+      <ul class="about-points" role="list">
+        <li class="about-point" data-i18n="about_p1">Combinamos criterio técnico y de diseño: la solución no solo funciona, también se entiende y se usa con gusto.</li>
+        <li class="about-point" data-i18n="about_p2">Desde la landing que convierte hasta el agente IA que gestiona tus leads: todo conectado en un solo sistema.</li>
+        <li class="about-point" data-i18n="about_p3">Trabajamos con n8n, APIs, Python, Airtable, modelos de IA de última generación y las herramientas que ya usas.</li>
+        <li class="about-point" data-i18n="about_p4">Base en Alemania, clientes en Europa y Latinoamérica. Atención en español, inglés y alemán.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIOS ══════════════════════════════════════════ -->
+<section class="section" id="resultados" aria-labelledby="testi-title">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-i18n="testi_eyebrow">Resultados reales</span>
+    <h2 class="heading reveal" id="testi-title" data-i18n-html="testi_title">La IA funciona mejor cuando está conectada con el <em>negocio</em>.</h2>
+    <div class="testi-grid">
+      <article class="card testi reveal">
+        <blockquote data-i18n="testi1_q">"Pasamos de tareas sueltas a un sistema completo."</blockquote>
+        <p data-i18n="testi1_d">Nos ayudaron a conectar formularios, seguimiento comercial y reporting. Lo que antes requería varias personas ahora fluye casi automáticamente.</p>
+        <div class="testi-name"><span class="testi-avatar" aria-hidden="true">LM</span><span>Laura M.<span data-i18n="testi1_r">Consultora · Agencia de marketing, Alemania</span></span></div>
+      </article>
+      <article class="card testi reveal reveal-d1">
+        <blockquote data-i18n="testi2_q">"No solo propusieron IA: propusieron estructura."</blockquote>
+        <p data-i18n="testi2_d">Tradujeron ideas difusas en procesos claros. Terminamos con una landing mejor, automatizaciones útiles y una captación de leads que funciona.</p>
+        <div class="testi-name"><span class="testi-avatar" aria-hidden="true">CR</span><span>Carlos R.<span data-i18n="testi2_r">Founder · Servicio digital, España</span></span></div>
+      </article>
+      <article class="card testi reveal reveal-d2">
+        <blockquote data-i18n="testi3_q">"Por fin una implementación que entendimos y pudimos mantener."</blockquote>
+        <p data-i18n="testi3_d">La solución fue técnica pero muy aterrizada. Todo quedó conectado y documentado de forma que el equipo no depende de nadie para el día a día.</p>
+        <div class="testi-name"><span class="testi-avatar" aria-hidden="true">MK</span><span>Miriam K.<span data-i18n="testi3_r">Operations Lead · E-commerce, DACH</span></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section class="section section-alt" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <span class="eyebrow reveal">FAQ</span>
+    <h2 class="heading reveal" id="faq-title" data-i18n="faq_title">Preguntas antes de empezar.</h2>
+    <div class="faq-grid">
+      <details class="faq reveal">
+        <summary><span data-i18n="faq1_q">¿Cuánto tiempo tarda una implementación?</span> <span class="faq-icon" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq1_a">Depende del alcance. Una automatización puntual o una landing puede estar lista en días. Un sistema más amplio se divide en fases con entregas y validación en cada paso.</div>
+      </details>
+      <details class="faq reveal reveal-d1">
+        <summary><span data-i18n="faq2_q">¿Necesito saber de tecnología?</span> <span class="faq-icon" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq2_a">Para nada. Nuestro trabajo es traducir la parte técnica a un sistema que entiendes y usas sin esfuerzo. Tú pones el conocimiento de tu negocio; nosotros ponemos el resto.</div>
+      </details>
+      <details class="faq reveal reveal-d2">
+        <summary><span data-i18n="faq3_q">¿Qué herramientas usan?</span> <span class="faq-icon" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq3_a">Principalmente n8n, Make, APIs, Airtable, Google Sheets, Python y modelos de IA como Claude y GPT. Siempre priorizamos integrarnos con lo que ya usas en vez de imponer herramientas nuevas.</div>
+      </details>
+      <details class="faq reveal reveal-d3">
+        <summary><span data-i18n="faq4_q">¿Puedes conectar mi WhatsApp, web o CRM?</span> <span class="faq-icon" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq4_a">Sí. Conectar la captación con el seguimiento y el reporting es de las implementaciones con impacto más rápido para cualquier negocio que vende servicios.</div>
+      </details>
+      <details class="faq reveal reveal-d4">
+        <summary><span data-i18n="faq5_q">¿Trabajan solo con empresas grandes?</span> <span class="faq-icon" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq5_a">Al contrario: la automatización rinde más cuando el equipo es pequeño y cada hora recuperada cuenta. Podemos empezar con algo concreto, medible y de bajo riesgo.</div>
+      </details>
+      <details class="faq reveal reveal-d5">
+        <summary><span data-i18n="faq6_q">¿Qué pasa después de la entrega?</span> <span class="faq-icon" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq6_a">Todo queda documentado y explicado para que sea tuyo de verdad. Y si quieres, ofrecemos soporte y mejora continua para que el sistema crezca con tu negocio.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ════════════════════════════════════════════ -->
+<section class="section" id="cta" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="cta-grid">
+        <div>
+          <span class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.85)" data-i18n="cta_eyebrow">Siguiente paso</span>
+          <h2 id="cta-title" data-i18n-html="cta_title">Tu competencia ya usa IA. La diferencia es <em>hacerla útil</em>.</h2>
+          <p data-i18n="cta_sub">Si quieres una automatización concreta, un asistente que venda por ti o una hoja de ruta clara para aplicar IA sin ruido, este es el punto de partida.</p>
+        </div>
+        <div>
+          <p class="cta-side-title" data-i18n="cta_side">Agenda una llamada gratuita de 30 minutos y vemos qué tiene sentido para tu caso.</p>
+          <div class="btn-row" style="margin-top:0">
+            <!-- EDITAR: reemplaza con tus enlaces reales de Calendly y WhatsApp -->
+            <a class="btn btn-primary" href="https://calendly.com" target="_blank" rel="noopener noreferrer" data-i18n="cta_btn1">Reservar llamada gratuita</a>
+            <a class="btn btn-ghost" href="https://wa.me" target="_blank" rel="noopener noreferrer" data-i18n="cta_btn2">Escribir por WhatsApp</a>
+          </div>
+          <!-- NUEVO: cta-social-proof -->
+          <p class="cta-live"><span class="cta-live-dot" aria-hidden="true"></span><span class="cta-live-text" data-i18n="live1">3 empresas iniciaron su diagnóstico esta semana</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+<footer class="site-footer" aria-label="Pie de página">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      merci<span class="ai">.ai</span>
+      <p data-i18n="footer_tag">Automatización · Agentes IA · Webs · Software a medida</p>
+      <p class="footer-copy" data-i18n="footer_copy">&copy; 2026 merci.ai · Por Felipe Saenz · @felipesaenzmkt</p>
+    </div>
+    <nav class="footer-links" aria-label="Links de pie de página">
+      <a href="#servicios" data-i18n="nav_services">Servicios</a>
+      <a href="#proceso" data-i18n="nav_process">Proceso</a>
+      <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta" data-i18n="nav_contact">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Botón flotante de contacto por WhatsApp -->
+<!-- EDITAR: reemplaza con tu número real, ej. https://wa.me/4915112345678 -->
+<a class="wa-float" href="https://wa.me" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   TRADUCCIONES — Para editar textos, hazlo solo en este objeto.
+   data-i18n      → reemplaza texto plano
+   data-i18n-html → reemplaza HTML (permite <em>...</em>)
+   ════════════════════════════════════════════════════════════ */
+const I18N = {
+  es: {
+    _meta_title: "merci.ai · Menos trabajo manual, más crecimiento",
+    skip: "Ir al contenido",
+    nav_services: "Servicios", nav_process: "Proceso", nav_about: "Nosotros",
+    nav_contact: "Contacto", nav_cta: "Agenda una llamada",
+
+    hero_eyebrow: "✦  Automatización e IA para negocios reales",
+    hero_h1: 'Menos trabajo manual. Más <em>crecimiento</em>.',
+    hero_sub: "Cada semana se van horas en tareas que la tecnología puede hacer sola. Diseñamos automatizaciones, agentes de IA y sistemas digitales que recuperan ese tiempo y lo convierten en ventas — sin tecnicismos ni promesas vacías.",
+    hero_cta1: "Empieza con un diagnóstico gratis", hero_cta2: "Ver servicios",
+    hero_note: "Respuesta rápida · Diagnóstico gratuito · Sin compromiso",
+    proof1: "automatizaciones e integraciones implementadas",
+    proof2: "tus sistemas atienden, responden y venden sin parar",
+    proof3_num: "0 hype", proof3: "solo implementaciones útiles, medibles y mantenibles",
+    proof4: "clientes en Europa y Latinoamérica, en tu idioma",
+
+    panel_eyebrow: "Sistema en marcha",
+    panel_title: "Tu negocio conectado de la captación al cierre, desde el día uno.",
+    panel_b1_t: "Captación", panel_b1_d: "Web, formularios y WhatsApp conectados a un seguimiento automático que no deja escapar leads.",
+    panel_b2_t: "Operación", panel_b2_d: "Agentes IA y flujos que responden, cotizan y agendan mientras tú te dedicas a lo importante.",
+    panel_b3_t: "Crecimiento", panel_b3_d: "Dashboards y reporting automático para decidir con datos reales, no con intuición.",
+
+    tools_label: "Construimos con las herramientas que ya mueven tu negocio",
+
+    pain_eyebrow: "¿Te suena?",
+    pain_title: 'Tu tiempo se va en tareas que <em>no deberían existir</em>.',
+    pain1_t: "Horas perdidas en lo repetitivo",
+    pain1_d: "Copiar datos, responder lo mismo, perseguir cotizaciones. Cada semana se van horas en tareas que una máquina haría mejor y sin quejarse.",
+    pain2_t: "Clientes que se escapan",
+    pain2_d: "Un lead que escribe a las 11 de la noche y nadie responde es una venta que se fue con la competencia. La velocidad de respuesta es dinero.",
+    pain3_t: "Herramientas que no se hablan",
+    pain3_d: "Tu web por un lado, el Excel por otro, WhatsApp por el suyo. Sin conexión entre ellas, tú eres el integrador humano — y eso no escala.",
+
+    svc_eyebrow: "Servicios",
+    svc_title: 'Lo repetitivo se automatiza. Lo importante <em>se potencia</em>.',
+    svc_sub: "Nada de demos que mueren en una carpeta. Diseñamos e implementamos sistemas que viven dentro de tu negocio, conectados con las herramientas que ya usas, y te los entregamos documentados para que sean tuyos de verdad.",
+    svc1_t: "Automatización de procesos",
+    svc1_d: "Capturamos leads, enviamos cotizaciones, calificamos prospectos y agendamos citas por ti. Conectamos tus herramientas para que el trabajo fluya de punta a punta, solo.",
+    svc1_tag1: "Leads en automático", svc1_tag2: "Cotizaciones al instante", svc1_tag3: "Seguimiento sin fugas",
+    svc2_t: "Asistentes y agentes de IA",
+    svc2_d: "Un agente entrenado con el conocimiento de tu negocio que conversa con tus clientes, resuelve dudas y agenda citas a cualquier hora — en tu web o en tu WhatsApp.",
+    svc2_tag1: "Agente de WhatsApp", svc2_tag2: "Disponible 24/7", svc2_tag3: "Integrado a tu CRM",
+    svc3_t: "Webs y funnels de venta",
+    svc3_d: "Páginas construidas para una sola cosa: convertir. De la landing de tu servicio al funnel completo, con diseño elegante, carga rápida y resultados que puedes medir.",
+    svc3_tag1: "Landings que convierten", svc3_tag2: "Funnels completos", svc3_tag3: "Diseño medible",
+    svc4_t: "Sistemas y software propio",
+    svc4_d: "Cuando ninguna herramienta genérica encaja, la construimos: un CRM hecho para ti, dashboards de control y herramientas internas que se adaptan a tu operación — y no al revés.",
+    svc4_tag1: "CRM hecho para ti", svc4_tag2: "Dashboards de control", svc4_tag3: "Operación simplificada",
+    svc_note: '¿Tu caso es distinto? Mejor. <strong>Cuéntanoslo y diseñamos la solución contigo.</strong>',
+
+    process_eyebrow: "Cómo trabajamos",
+    process_title: 'De la primera llamada al sistema funcionando, <em>sin fricción</em>.',
+    step1_t: "Nos cuentas tu caso", step1_d: "Una llamada gratuita de 30 minutos. Nos explicas qué te quita tiempo o dónde pierdes clientes. Sin tecnicismos.",
+    step2_t: "Te proponemos la solución", step2_d: "Recibes una propuesta clara: qué construimos, qué resuelve, cuánto cuesta y cuándo está listo. Sin letra pequeña.",
+    step3_t: "Lo construimos e implementamos", step3_d: "Trabajamos por fases con validación en cada paso. Ves avances reales desde la primera semana, no al final.",
+    step4_t: "Te lo entregamos funcionando", step4_d: "Sistema en marcha, documentado y explicado. Tu equipo lo entiende y lo mantiene sin depender de nadie.",
+
+    about_eyebrow: "Detrás de merci.ai",
+    about_title: 'Tecnología seria, trato <em>cercano</em>.',
+    about_sub: "merci.ai nace de una idea simple: la IA no debería ser un lujo de grandes empresas ni una demo impresionante que nadie usa. Debería ser infraestructura que trabaja por ti todos los días — clara, mantenible y rentable.",
+    about_p1: "Combinamos criterio técnico y de diseño: la solución no solo funciona, también se entiende y se usa con gusto.",
+    about_p2: "Desde la landing que convierte hasta el agente IA que gestiona tus leads: todo conectado en un solo sistema.",
+    about_p3: "Trabajamos con n8n, APIs, Python, Airtable, modelos de IA de última generación y las herramientas que ya usas.",
+    about_p4: "Base en Alemania, clientes en Europa y Latinoamérica. Atención en español, inglés y alemán.",
+    about_card_eyebrow: "Por qué merci.ai",
+    about_card_title: "Un socio técnico para problemas que no caben en una sola disciplina.",
+    about_card_sub: "No pensamos la IA como un experimento aislado, sino como una capa que potencia tu marketing, tu captación y tu operación al mismo tiempo.",
+    metric1_n: "Útil", metric1_d: "Cada pieza resuelve algo concreto",
+    metric2_n: "Claro", metric2_d: "Lo entiendes y lo mantienes tú",
+    metric3_n: "Tuyo", metric3_d: "Documentado y en tus manos",
+
+    testi_eyebrow: "Resultados reales",
+    testi_title: 'La IA funciona mejor cuando está conectada con el <em>negocio</em>.',
+    testi1_q: '"Pasamos de tareas sueltas a un sistema completo."',
+    testi1_d: "Nos ayudaron a conectar formularios, seguimiento comercial y reporting. Lo que antes requería varias personas ahora fluye casi automáticamente.",
+    testi1_r: "Consultora · Agencia de marketing, Alemania",
+    testi2_q: '"No solo propusieron IA: propusieron estructura."',
+    testi2_d: "Tradujeron ideas difusas en procesos claros. Terminamos con una landing mejor, automatizaciones útiles y una captación de leads que funciona.",
+    testi2_r: "Founder · Servicio digital, España",
+    testi3_q: '"Por fin una implementación que entendimos y pudimos mantener."',
+    testi3_d: "La solución fue técnica pero muy aterrizada. Todo quedó conectado y documentado de forma que el equipo no depende de nadie para el día a día.",
+    testi3_r: "Operations Lead · E-commerce, DACH",
+
+    faq_title: "Preguntas antes de empezar.",
+    faq1_q: "¿Cuánto tiempo tarda una implementación?",
+    faq1_a: "Depende del alcance. Una automatización puntual o una landing puede estar lista en días. Un sistema más amplio se divide en fases con entregas y validación en cada paso.",
+    faq2_q: "¿Necesito saber de tecnología?",
+    faq2_a: "Para nada. Nuestro trabajo es traducir la parte técnica a un sistema que entiendes y usas sin esfuerzo. Tú pones el conocimiento de tu negocio; nosotros ponemos el resto.",
+    faq3_q: "¿Qué herramientas usan?",
+    faq3_a: "Principalmente n8n, Make, APIs, Airtable, Google Sheets, Python y modelos de IA como Claude y GPT. Siempre priorizamos integrarnos con lo que ya usas en vez de imponer herramientas nuevas.",
+    faq4_q: "¿Puedes conectar mi WhatsApp, web o CRM?",
+    faq4_a: "Sí. Conectar la captación con el seguimiento y el reporting es de las implementaciones con impacto más rápido para cualquier negocio que vende servicios.",
+    faq5_q: "¿Trabajan solo con empresas grandes?",
+    faq5_a: "Al contrario: la automatización rinde más cuando el equipo es pequeño y cada hora recuperada cuenta. Podemos empezar con algo concreto, medible y de bajo riesgo.",
+    faq6_q: "¿Qué pasa después de la entrega?",
+    faq6_a: "Todo queda documentado y explicado para que sea tuyo de verdad. Y si quieres, ofrecemos soporte y mejora continua para que el sistema crezca con tu negocio.",
+
+    cta_eyebrow: "Siguiente paso",
+    cta_title: 'Tu competencia ya usa IA. La diferencia es <em>hacerla útil</em>.',
+    cta_sub: "Si quieres una automatización concreta, un asistente que venda por ti o una hoja de ruta clara para aplicar IA sin ruido, este es el punto de partida.",
+    cta_side: "Agenda una llamada gratuita de 30 minutos y vemos qué tiene sentido para tu caso.",
+    cta_btn1: "Reservar llamada gratuita", cta_btn2: "Escribir por WhatsApp",
+    // NUEVO: cta-social-proof — mensajes rotativos
+    live1: "3 empresas iniciaron su diagnóstico esta semana",
+    live2: "2 llamadas de diagnóstico agendadas hoy",
+    live3: "5 automatizaciones entregadas este mes",
+    live4: "1 agente IA puesto en marcha esta semana",
+
+    // NUEVO: roi-calculator
+    roi_eyebrow: "Calcula tu ahorro",
+    roi_title: "¿Cuántas horas (y dólares) estás perdiendo cada semana?",
+    roi_hours_label: "Horas repetitivas por semana",
+    roi_rate_label: "Valor de tu hora ($)",
+    roi_cost_label: "Coste actual por mes",
+    roi_auto_label: "Con automatización (85% recuperado)",
+    roi_save_label: "Ahorro mensual estimado",
+    roi_payback_label: "Payback estimado",
+    roi_payback1: "< 30 días",
+    roi_payback2: "< 60 días",
+    roi_payback3: "< 90 días",
+    roi_bar_label: "Tiempo recuperado con automatización",
+    roi_bar_pct: "85%",
+    roi_copy1: "Ya cubre el coste de una automatización puntual.",
+    roi_copy2: "Suficiente para implementar un sistema completo.",
+    roi_copy3: "Estás dejando pasar una ventaja competitiva real.",
+    // NUEVO: about-profile
+    bio_name: "Felipe Sáenz",
+    bio_role: "Fundador · merci.ai",
+    bio_text: "Especialista en automatización, IA y diseño digital con base en Alemania. Trabajo en la intersección entre marketing, tecnología y sistemas — construyendo soluciones que no solo funcionan, sino que el equipo entiende y mantiene. Atiendo en español, inglés y alemán.",
+    bio_linkedin: "LinkedIn",
+    bio_email: "Email",
+
+    footer_tag: "Automatización · Agentes IA · Webs · Software a medida",
+    footer_copy: "© 2026 merci.ai · Por Felipe Saenz · @felipesaenzmkt"
+  },
+
+  en: {
+    _meta_title: "merci.ai · Less manual work, more growth",
+    skip: "Skip to content",
+    nav_services: "Services", nav_process: "Process", nav_about: "About",
+    nav_contact: "Contact", nav_cta: "Book a call",
+
+    hero_eyebrow: "✦  Automation & AI for real businesses",
+    hero_h1: 'Less manual work. More <em>growth</em>.',
+    hero_sub: "Every week, hours disappear into tasks technology could handle on its own. We design automations, AI agents and digital systems that win that time back and turn it into sales — no jargon, no empty promises.",
+    hero_cta1: "Start with a free diagnosis", hero_cta2: "See services",
+    hero_note: "Fast reply · Free diagnosis · No strings attached",
+    proof1: "automations and integrations delivered",
+    proof2: "your systems answer, follow up and sell around the clock",
+    proof3_num: "0 hype", proof3: "only useful, measurable, maintainable implementations",
+    proof4: "clients across Europe and Latin America, in your language",
+
+    panel_eyebrow: "System running",
+    panel_title: "Your business connected from first click to closed deal, from day one.",
+    panel_b1_t: "Lead capture", panel_b1_d: "Website, forms and WhatsApp wired to automatic follow-up that never lets a lead slip away.",
+    panel_b2_t: "Operations", panel_b2_d: "AI agents and workflows that reply, quote and schedule while you focus on what matters.",
+    panel_b3_t: "Growth", panel_b3_d: "Dashboards and automated reporting so you decide with real data, not gut feeling.",
+
+    tools_label: "Built with the tools already running your business",
+
+    pain_eyebrow: "Sound familiar?",
+    pain_title: 'Your time disappears into tasks that <em>shouldn\'t exist</em>.',
+    pain1_t: "Hours lost to repetitive work",
+    pain1_d: "Copying data, answering the same questions, chasing quotes. Every week, hours vanish into tasks a machine would do better — without complaining.",
+    pain2_t: "Leads slipping away",
+    pain2_d: "A lead who writes at 11 pm and gets no answer is a sale that walked to your competitor. Response speed is money.",
+    pain3_t: "Tools that don't talk to each other",
+    pain3_d: "Your website here, a spreadsheet there, WhatsApp on its own. With nothing connected, you are the human integrator — and that doesn't scale.",
+
+    svc_eyebrow: "Services",
+    svc_title: 'The repetitive gets automated. What matters <em>gets amplified</em>.',
+    svc_sub: "No demos that die in a folder. We design and implement systems that live inside your business, connected to the tools you already use — delivered documented, so they're truly yours.",
+    svc1_t: "Process automation",
+    svc1_d: "We capture leads, send quotes, qualify prospects and book appointments for you. We connect your tools so work flows end to end, on its own.",
+    svc1_tag1: "Leads on autopilot", svc1_tag2: "Instant quotes", svc1_tag3: "Leak-proof follow-up",
+    svc2_t: "AI assistants & agents",
+    svc2_d: "An agent trained on your business knowledge that talks to your customers, answers questions and books appointments at any hour — on your website or your WhatsApp.",
+    svc2_tag1: "WhatsApp agent", svc2_tag2: "Available 24/7", svc2_tag3: "Plugged into your CRM",
+    svc3_t: "Websites & sales funnels",
+    svc3_d: "Pages built for one thing: converting. From your service landing page to the full funnel — elegant design, fast loading and results you can measure.",
+    svc3_tag1: "Landings that convert", svc3_tag2: "Complete funnels", svc3_tag3: "Measurable design",
+    svc4_t: "Systems & custom software",
+    svc4_d: "When no off-the-shelf tool fits, we build it: a CRM made for you, control dashboards and internal tools that adapt to your operation — not the other way around.",
+    svc4_tag1: "A CRM made for you", svc4_tag2: "Control dashboards", svc4_tag3: "Streamlined operations",
+    svc_note: 'Is your case different? Even better. <strong>Tell us about it and we\'ll design the solution with you.</strong>',
+
+    process_eyebrow: "How we work",
+    process_title: 'From the first call to a working system, <em>without friction</em>.',
+    step1_t: "Tell us your case", step1_d: "A free 30-minute call. You explain what eats your time or where you lose clients. No jargon required.",
+    step2_t: "Get a clear proposal", step2_d: "You receive a clear plan: what we build, what it solves, what it costs and when it's ready. No fine print.",
+    step3_t: "We build and implement", step3_d: "We work in phases with validation at every step. You see real progress from week one, not at the end.",
+    step4_t: "Delivered, working, yours", step4_d: "System live, documented and explained. Your team understands it and maintains it without depending on anyone.",
+
+    about_eyebrow: "Behind merci.ai",
+    about_title: 'Serious technology, <em>human</em> touch.',
+    about_sub: "merci.ai was born from a simple idea: AI shouldn't be a luxury for big corporations or an impressive demo nobody uses. It should be infrastructure that works for you every day — clear, maintainable and profitable.",
+    about_p1: "We combine technical and design judgment: the solution doesn't just work, it's clear and a pleasure to use.",
+    about_p2: "From the landing page that converts to the AI agent managing your leads: everything connected in one system.",
+    about_p3: "We work with n8n, APIs, Python, Airtable, state-of-the-art AI models and the tools you already use.",
+    about_p4: "Based in Germany, clients across Europe and Latin America. Service in Spanish, English and German.",
+    about_card_eyebrow: "Why merci.ai",
+    about_card_title: "A technical partner for problems that don't fit in a single discipline.",
+    about_card_sub: "We don't treat AI as an isolated experiment, but as a layer that powers your marketing, lead capture and operations at the same time.",
+    metric1_n: "Useful", metric1_d: "Every piece solves something concrete",
+    metric2_n: "Clear", metric2_d: "You understand it and maintain it",
+    metric3_n: "Yours", metric3_d: "Documented and in your hands",
+
+    testi_eyebrow: "Real results",
+    testi_title: 'AI works best when it\'s connected to the <em>business</em>.',
+    testi1_q: '"We went from scattered tasks to a complete system."',
+    testi1_d: "They helped us connect forms, sales follow-up and reporting. What used to need several people now flows almost automatically.",
+    testi1_r: "Consultant · Marketing agency, Germany",
+    testi2_q: '"They didn\'t just propose AI — they proposed structure."',
+    testi2_d: "They turned vague ideas into clear processes. We ended up with a better landing page, useful automations and lead capture that works.",
+    testi2_r: "Founder · Digital service, Spain",
+    testi3_q: '"Finally an implementation we understood and could maintain."',
+    testi3_d: "The solution was technical but very grounded. Everything was connected and documented so the team doesn't depend on anyone day to day.",
+    testi3_r: "Operations Lead · E-commerce, DACH",
+
+    faq_title: "Questions before we start.",
+    faq1_q: "How long does an implementation take?",
+    faq1_a: "It depends on scope. A single automation or a landing page can be ready in days. A larger system is split into phases with deliveries and validation at each step.",
+    faq2_q: "Do I need to be tech-savvy?",
+    faq2_a: "Not at all. Our job is translating the technical side into a system you understand and use effortlessly. You bring the business knowledge; we bring the rest.",
+    faq3_q: "What tools do you use?",
+    faq3_a: "Mainly n8n, Make, APIs, Airtable, Google Sheets, Python and AI models like Claude and GPT. We always prefer integrating with what you already use over imposing new tools.",
+    faq4_q: "Can you connect my WhatsApp, website or CRM?",
+    faq4_a: "Yes. Connecting lead capture with follow-up and reporting is one of the fastest-impact implementations for any service business.",
+    faq5_q: "Do you only work with big companies?",
+    faq5_a: "Quite the opposite: automation pays off most when the team is small and every recovered hour counts. We can start with something concrete, measurable and low-risk.",
+    faq6_q: "What happens after delivery?",
+    faq6_a: "Everything is documented and explained so it's truly yours. And if you want, we offer support and continuous improvement so the system grows with your business.",
+
+    cta_eyebrow: "Next step",
+    cta_title: 'Your competitors already use AI. The difference is <em>making it useful</em>.',
+    cta_sub: "If you want a concrete automation, an assistant that sells for you, or a clear roadmap to apply AI without the noise, this is where it starts.",
+    cta_side: "Book a free 30-minute call and we'll see what makes sense for your case.",
+    cta_btn1: "Book a free call", cta_btn2: "Message us on WhatsApp",
+    // NUEVO: cta-social-proof — mensajes rotativos
+    live1: "3 businesses started their diagnosis this week",
+    live2: "2 diagnosis calls booked today",
+    live3: "5 automations delivered this month",
+    live4: "1 AI agent launched this week",
+
+    // NUEVO: roi-calculator
+    roi_eyebrow: "Calculate your savings",
+    roi_title: "How many hours (and dollars) are you losing every week?",
+    roi_hours_label: "Repetitive hours per week",
+    roi_rate_label: "Your hourly rate ($)",
+    roi_cost_label: "Current monthly cost",
+    roi_auto_label: "With automation (85% recovered)",
+    roi_save_label: "Estimated monthly savings",
+    roi_payback_label: "Estimated payback",
+    roi_payback1: "< 30 days",
+    roi_payback2: "< 60 days",
+    roi_payback3: "< 90 days",
+    roi_bar_label: "Time recovered with automation",
+    roi_bar_pct: "85%",
+    roi_copy1: "Already covers the cost of a one-off automation.",
+    roi_copy2: "Enough to implement a complete system.",
+    roi_copy3: "You're letting a real competitive advantage pass by.",
+    // NUEVO: about-profile
+    bio_name: "Felipe Sáenz",
+    bio_role: "Founder · merci.ai",
+    bio_text: "Automation, AI and digital design specialist based in Germany. I work at the intersection of marketing, technology and systems — building solutions that not only work, but that your team actually understands and maintains. Available in Spanish, English and German.",
+    bio_linkedin: "LinkedIn",
+    bio_email: "Email",
+
+    footer_tag: "Automation · AI agents · Websites · Custom software",
+    footer_copy: "© 2026 merci.ai · By Felipe Saenz · @felipesaenzmkt"
+  }
+};
+
+/* ─── Estado: idioma + tema (persistidos en localStorage) ──── */
+const root = document.documentElement;
+let lang = localStorage.getItem('merci-lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+let theme = localStorage.getItem('merci-theme') ||
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+function applyTheme(t) {
+  theme = t;
+  root.setAttribute('data-theme', t);
+  localStorage.setItem('merci-theme', t);
+}
+
+function applyLang(l) {
+  lang = l;
+  const dict = I18N[l];
+  root.setAttribute('lang', l);
+  document.title = dict._meta_title;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.getElementById('lang-es').classList.toggle('active', l === 'es');
+  document.getElementById('lang-en').classList.toggle('active', l === 'en');
+  document.getElementById('lang-es').setAttribute('aria-pressed', l === 'es');
+  document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
+  localStorage.setItem('merci-lang', l);
+}
+
+document.getElementById('theme-toggle').addEventListener('click', () =>
+  applyTheme(theme === 'dark' ? 'light' : 'dark'));
+document.getElementById('lang-es').addEventListener('click', () => applyLang('es'));
+document.getElementById('lang-en').addEventListener('click', () => applyLang('en'));
+
+/* ─── Reveal on scroll (IntersectionObserver) ──────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ─── Contadores animados ──────────────────────────────────── */
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.target, dur = 1400, t0 = performance.now();
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+    counterIO.unobserve(el);
+  });
+}, { threshold: .5 });
+document.querySelectorAll('.counter').forEach(el => counterIO.observe(el));
+
+/* ─── FAQ: cerrar suavemente el icono ──────────────────────── */
+document.querySelectorAll('details.faq').forEach(d => {
+  d.addEventListener('toggle', () => {
+    const icon = d.querySelector('.faq-icon');
+    if (icon) icon.textContent = d.open ? '–' : '+';
+  });
+});
+
+/* NUEVO: faq-animada — apertura/cierre con max-height suave.
+   JS toma el control del click: sin JS el details sigue siendo nativo. */
+document.querySelectorAll('details.faq').forEach(d => {
+  const body = d.querySelector('.faq-body');
+  const summary = d.querySelector('summary');
+  if (!body || !summary) return;
+  d.classList.add('faq-anim');
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    if (d.open) {
+      // Cerrar: fijar la altura actual, forzar reflow y colapsar
+      body.style.maxHeight = body.scrollHeight + 'px';
+      void body.offsetHeight;
+      body.style.maxHeight = '0px';
+      body.addEventListener('transitionend', function close() {
+        body.removeEventListener('transitionend', close);
+        d.open = false;
+      });
+    } else {
+      d.open = true;
+      body.style.maxHeight = '0px';
+      void body.offsetHeight;
+      body.style.maxHeight = body.scrollHeight + 'px';
+      // Al terminar, liberar la altura por si el texto cambia (i18n)
+      body.addEventListener('transitionend', function release() {
+        body.removeEventListener('transitionend', release);
+        if (d.open) body.style.maxHeight = 'none';
+      });
+    }
+  });
+});
+
+/* NUEVO: cta-social-proof — rota mensajes de actividad con fade.
+   Lee de I18N en cada tick, así respeta el idioma activo. */
+(function ctaLive() {
+  const el = document.querySelector('.cta-live-text');
+  if (!el) return;
+  let idx = 0;
+  setInterval(() => {
+    const msgs = [I18N[lang].live1, I18N[lang].live2, I18N[lang].live3, I18N[lang].live4];
+    idx = (idx + 1) % msgs.length;
+    el.classList.add('fading');
+    setTimeout(() => {
+      el.textContent = msgs[idx];
+      el.classList.remove('fading');
+    }, 350);
+  }, 4500);
+})();
+
+/* ─── Typewriter del hero-panel ────────────────────────────── */
+/* Escribe secuencialmente las líneas del panel al cargar, con
+   cursor parpadeante. Si el usuario cambia de idioma a mitad,
+   se aborta y applyLang deja los textos completos. */
+function runTypewriter() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const panel = document.querySelector('.hero-panel');
+  if (!panel) return;
+  const targets = [
+    panel.querySelector('.panel-title'),
+    ...panel.querySelectorAll('.panel-block strong, .panel-block span')
+  ];
+  const startLang = lang;
+  // Reservar la altura actual para que el layout no salte al vaciar
+  targets.forEach(el => {
+    el.dataset.twText = el.textContent;
+    el.style.minHeight = el.offsetHeight + 'px';
+    el.textContent = '';
+  });
+  let i = 0;
+  function typeNext() {
+    if (i >= targets.length) return;
+    const el = targets[i++];
+    const text = el.dataset.twText;
+    const speed = el.classList.contains('panel-title') ? 26 : 12;
+    let j = 0;
+    el.classList.add('tw-typing');
+    (function tick() {
+      if (lang !== startLang) { // applyLang ya repuso el texto completo
+        targets.forEach(t => t.classList.remove('tw-typing'));
+        return;
+      }
+      el.textContent = text.slice(0, ++j);
+      if (j < text.length) setTimeout(tick, speed);
+      else {
+        // El cursor se queda parpadeando solo en la última línea
+        if (i < targets.length) el.classList.remove('tw-typing');
+        setTimeout(typeNext, 180);
+      }
+    })();
+  }
+  typeNext();
+}
+
+/* ─── Marquee: duplicar la pista para el loop infinito ─────── */
+(function cloneMarquee() {
+  const tracks = document.querySelectorAll('.marquee-track');
+  if (tracks.length === 2) tracks[1].innerHTML = tracks[0].innerHTML;
+})();
+
+/* ─── Timeline de proceso: la línea se llena con el scroll ─── */
+(function stepsTimeline() {
+  const grid = document.querySelector('.steps-grid');
+  if (!grid) return;
+  const cards = [...grid.querySelectorAll('.step-card')];
+  const line = grid.querySelector('.steps-line');
+  const fill = grid.querySelector('.steps-line-fill');
+  let maxStep = -1;
+
+  // El relleno llega exactamente al centro del círculo activo,
+  // en horizontal (desktop) o vertical (mobile) según la línea.
+  function setFill(i) {
+    const lr = line.getBoundingClientRect();
+    const nr = cards[i].querySelector('.step-num').getBoundingClientRect();
+    if (lr.width >= lr.height) {
+      fill.style.width = Math.max(0, nr.left + nr.width / 2 - lr.left) + 'px';
+      fill.style.height = '100%';
+    } else {
+      fill.style.height = Math.max(0, nr.top + nr.height / 2 - lr.top) + 'px';
+      fill.style.width = '100%';
+    }
+  }
+  function activateUpTo(i) {
+    if (i <= maxStep) return;
+    maxStep = i;
+    cards.forEach((c, k) => c.classList.toggle('step-active', k <= i));
+    setFill(i);
+  }
+  const stepIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const i = cards.indexOf(e.target);
+      // En desktop los 4 entran a la vez: el delay escalona la animación
+      setTimeout(() => activateUpTo(i), i * 320);
+      stepIO.unobserve(e.target);
+    });
+  }, { threshold: .35 });
+  cards.forEach(c => stepIO.observe(c));
+  window.addEventListener('resize', () => { if (maxStep >= 0) setFill(maxStep); });
+})();
+
+/* ─── Glow del hero que sigue el cursor (solo desktop) ─────── */
+(function heroGlow() {
+  const hero = document.querySelector('.hero-section');
+  const glow = document.querySelector('.hero-glow');
+  if (!hero || !glow) return;
+  const mqDesktop = window.matchMedia('(min-width: 900px)');
+  let tx = 0, ty = 0, cx = 0, cy = 0, raf = null, tracking = false;
+  function loop() {
+    cx += (tx - cx) * .08;
+    cy += (ty - cy) * .08;
+    glow.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    if (tracking || Math.abs(tx - cx) > .5 || Math.abs(ty - cy) > .5) {
+      raf = requestAnimationFrame(loop);
+    } else { raf = null; }
+  }
+  hero.addEventListener('mousemove', e => {
+    if (!mqDesktop.matches) return;
+    const r = hero.getBoundingClientRect();
+    tx = e.clientX - r.left;
+    ty = e.clientY - r.top;
+    if (!tracking) { cx = tx; cy = ty; } // primer movimiento: aparecer en sitio
+    tracking = true;
+    glow.style.opacity = '1';
+    if (!raf) raf = requestAnimationFrame(loop);
+  });
+  hero.addEventListener('mouseleave', () => {
+    tracking = false;
+    glow.style.opacity = '0';
+  });
+})();
+
+/* NUEVO: roi-calculator — calcula y actualiza resultados en tiempo real */
+(function roiCalc() {
+  const section = document.getElementById('roi-calculator');
+  if (!section) return;
+  const sliderHours = document.getElementById('roi-hours');
+  const sliderRate  = document.getElementById('roi-rate');
+  const valHours    = document.getElementById('roi-hours-val');
+  const valRate     = document.getElementById('roi-rate-val');
+  const elCost      = document.getElementById('roi-cost');
+  const elAuto      = document.getElementById('roi-auto');
+  const elSave      = document.getElementById('roi-save');
+  const elPayback   = document.getElementById('roi-payback-val');
+  const elBar       = document.getElementById('roi-bar-fill');
+  const elCopy      = document.getElementById('roi-microcopy');
+  let barAnimated   = false;
+
+  function fmt(n) {
+    return '$ ' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function update() {
+    const hours = +sliderHours.value;
+    const rate  = +sliderRate.value;
+    const costPerMonth = hours * rate * 4;
+    const withAuto     = costPerMonth * 0.15;
+    const savings      = costPerMonth - withAuto;
+    const d = I18N[lang];
+
+    valHours.textContent = hours + 'h';
+    valRate.textContent  = '$' + rate;
+    elCost.textContent   = fmt(costPerMonth);
+    elAuto.textContent   = fmt(withAuto);
+    elSave.textContent   = fmt(savings);
+    sliderHours.setAttribute('aria-valuenow', hours);
+    sliderRate.setAttribute('aria-valuenow', rate);
+
+    if (savings < 200)      elPayback.textContent = d.roi_payback1 || '< 30 días';
+    else if (savings < 800) elPayback.textContent = d.roi_payback2 || '< 60 días';
+    else                    elPayback.textContent = d.roi_payback3 || '< 90 días';
+
+    if (barAnimated) elBar.style.width = '85%';
+
+    const newCopy = savings < 200 ? d.roi_copy1 : savings < 800 ? d.roi_copy2 : d.roi_copy3;
+    if (elCopy.textContent !== newCopy) {
+      elCopy.classList.add('fading');
+      setTimeout(() => { elCopy.textContent = newCopy; elCopy.classList.remove('fading'); }, 350);
+    }
+  }
+
+  sliderHours.addEventListener('input', update);
+  sliderRate.addEventListener('input', update);
+
+  // Animar la barra cuando la sección entre en vista
+  const barIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      barAnimated = true;
+      elBar.style.width = '85%';
+      update();
+      barIO.unobserve(e.target);
+    });
+  }, { threshold: .2 });
+  barIO.observe(section);
+
+  // Actualizar textos dinámicos al cambiar idioma
+  document.getElementById('lang-es').addEventListener('click', () => setTimeout(update, 30));
+  document.getElementById('lang-en').addEventListener('click', () => setTimeout(update, 30));
+
+  update();
+})();
+
+/* NUEVO: about-profile — animar foto al entrar en vista */
+(function profileReveal() {
+  const photo = document.querySelector('.about-photo');
+  if (!photo) return;
+  const pIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); pIO.unobserve(e.target); }
+    });
+  }, { threshold: .2 });
+  pIO.observe(photo);
+})();
+
+/* ─── Init ─────────────────────────────────────────────────── */
+applyTheme(theme);
+applyLang(lang);
+runTypewriter();
+</script>
+
+</body>
+</html>
