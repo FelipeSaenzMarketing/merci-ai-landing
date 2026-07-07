@@ -100,7 +100,7 @@
     .section-alt{background:var(--color-bg-soft);transition:background .45s ease}
 
     /* ─── Fuentes display / body ───────────────────────────── */
-    h1,h2,h3,.heading,.hero-h1,.panel-title,.proof-box strong,.roi-result-val{
+    h1,h2,h3,.heading,.hero-h1,.panel-title,.proof-box strong{
       font-family:var(--font-display)
     }
     body,button,p,li,nav,.btn,.eyebrow,.subtext,.svc-tags span,.step-card p,
@@ -245,7 +245,7 @@
 
     /* ─── HERO ─────────────────────────────────────────────── */
     .hero-section{
-      padding:clamp(6rem,14vw,11rem) 0 clamp(5rem,11vw,9rem);
+      padding:clamp(3.5rem,8vw,6.5rem) 0 clamp(3rem,7vw,5.5rem);
       position:relative;overflow:hidden;min-height:88vh;display:flex;align-items:center
     }
     /* Fondo del hero: dot grid sutil + glow que sigue el cursor */
@@ -327,50 +327,94 @@
     .marquee:hover .marquee-track{animation-play-state:paused}
     @keyframes scroll{to{transform:translateX(-100%)}}
     .tool-chip{font-weight:700;font-size:.95rem;color:var(--color-text-muted);white-space:nowrap;display:flex;align-items:center;gap:.5rem}
-    .tool-chip svg{width:17px;height:17px;color:var(--chip,var(--color-accent));flex-shrink:0}
+    .tool-chip svg{width:24px;height:24px;color:var(--chip,var(--color-accent));flex-shrink:0}
 
     /* ─── PROBLEMA ─────────────────────────────────────────── */
     .pain-grid{display:grid;gap:1.25rem;margin-top:2.5rem;align-items:stretch}
     .pain-card{padding:1.75rem;border-left:none;border:1px solid var(--color-card-border);background:var(--color-card);border-radius:var(--radius-lg)}
-    .pain-card h3{font-size:1rem;font-weight:700;letter-spacing:-.02em}
+    .pain-card h3{font-size:clamp(1.15rem,1.08rem + .35vw,1.35rem);font-weight:700;letter-spacing:-.02em}
     .pain-card h3::before{
       content:'';display:block;width:2rem;height:2px;
       background:var(--color-accent);margin-bottom:.85rem;border-radius:999px
     }
-    .pain-card p{margin-top:.55rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+    .pain-card p{margin-top:.55rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-base);max-width:unset}
 
     /* ─── SERVICIOS ────────────────────────────────────────── */
     .services-intro{display:grid;gap:2.5rem;align-items:center;margin-bottom:3rem}
     .services-intro .heading{text-align:center;margin-inline:auto}
     .services-intro .subtext{text-align:left;margin-inline:0}
     .services-grid{display:grid;gap:1.25rem;align-items:stretch}
-    .svc-card{padding:1.85rem;position:relative;overflow:hidden}
+    .svc-card{
+      --pad:1.85rem;
+      padding:var(--pad);position:relative;overflow:hidden;
+      display:flex;flex-direction:column;
+      background:linear-gradient(180deg,rgba(59,130,246,.05),rgba(59,130,246,0) 60%),var(--color-card)
+    }
+    [data-theme="dark"] .svc-card{
+      background:linear-gradient(180deg,rgba(99,102,241,.1),rgba(99,102,241,0) 60%),var(--color-card)
+    }
     .svc-card::before{
-      content:'';position:absolute;inset:0 0 auto 0;height:1px;
-      background:var(--color-accent);
+      content:'';position:absolute;inset:0 0 auto 0;height:2px;z-index:1;
+      background:linear-gradient(90deg,var(--color-accent),var(--color-accent-dark));
       transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)
     }
-    .svc-card:hover{box-shadow:var(--shadow-md);transform:translateY(-5px)}
-    .svc-card:hover::before{transform:scaleX(1)}
-    .svc-icon{
-      background:transparent;border:none;
-      width:auto;height:auto;border-radius:0;
-      margin-bottom:1.4rem;display:block;
-      transition:transform var(--t);
-      color:var(--color-accent)
+    /* Halo suave que aparece detrás del contenido al hacer hover */
+    .svc-card::after{
+      content:'';position:absolute;top:-40%;right:-25%;width:70%;aspect-ratio:1;
+      border-radius:50%;pointer-events:none;
+      background:radial-gradient(circle,rgba(59,130,246,.14),transparent 70%);
+      opacity:0;transition:opacity .5s ease
     }
-    [data-theme="dark"] .svc-icon{color:var(--color-accent)}
-    .svc-icon svg{width:1.75rem;height:1.75rem;stroke-width:1.5}
-    .svc-card:hover .svc-icon{transform:scale(1.1)}
-    .svc-card h3{font-size:1.08rem;font-weight:800;letter-spacing:-.025em}
-    .svc-card p{margin-top:.6rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+    [data-theme="dark"] .svc-card::after{
+      background:radial-gradient(circle,rgba(99,102,241,.22),transparent 70%)
+    }
+    .svc-card:hover{
+      box-shadow:var(--shadow-md);transform:translateY(-5px);
+      border-color:rgba(59,130,246,.35)
+    }
+    [data-theme="dark"] .svc-card:hover{border-color:rgba(99,102,241,.45)}
+    .svc-card:hover::before{transform:scaleX(1)}
+    .svc-card:hover::after{opacity:1}
+    .svc-icon{
+      width:3.4rem;height:3.4rem;border-radius:var(--radius-md);
+      display:grid;place-items:center;margin-bottom:1.4rem;
+      background:var(--color-tag-bg);
+      border:1px solid rgba(59,130,246,.2);
+      color:var(--color-accent);
+      transition:background .35s ease,color .35s ease,border-color .35s ease,
+        transform var(--t),box-shadow .35s ease
+    }
+    [data-theme="dark"] .svc-icon{border-color:rgba(99,102,241,.3)}
+    .svc-icon svg{width:1.7rem;height:1.7rem;stroke-width:1.5}
+    .svc-card:hover .svc-icon{
+      background:var(--color-accent);color:#fff;border-color:transparent;
+      transform:scale(1.06) rotate(-3deg);box-shadow:var(--glow-accent)
+    }
+    .svc-card h3{font-size:clamp(1.35rem,1.22rem + .55vw,1.65rem);font-weight:700;letter-spacing:-.02em}
+    .svc-card p{margin-top:.65rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-base);max-width:unset}
     .svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
     .svc-tags span{
       padding:.28rem .7rem;border-radius:999px;
       background:transparent;border:1px solid var(--color-divider);
-      color:var(--color-text-muted);font-size:.72rem;font-weight:600
+      color:var(--color-text-muted);font-size:.72rem;font-weight:600;
+      transition:border-color .35s ease,color .35s ease,background .35s ease
     }
-    .svc-note{margin-top:2.2rem;text-align:center;font-weight:600;color:var(--color-text-muted);font-size:var(--text-sm);max-width:unset}
+    .svc-card:hover .svc-tags span{
+      border-color:rgba(59,130,246,.35);color:var(--color-text);
+      background:var(--color-hover-soft)
+    }
+    [data-theme="dark"] .svc-card:hover .svc-tags span{border-color:rgba(99,102,241,.45)}
+    .svc-link{
+      margin-top:auto;padding-top:1.35rem;
+      display:inline-flex;align-items:center;gap:.4rem;width:fit-content;
+      font-size:.85rem;font-weight:700;color:var(--color-accent);
+      opacity:.75;transition:opacity .35s ease,gap .25s ease
+    }
+    [data-theme="dark"] .svc-link{color:var(--color-accent-dark)}
+    .svc-link::after{content:'→';transition:transform .25s ease}
+    .svc-card:hover .svc-link{opacity:1}
+    .svc-link:hover::after{transform:translateX(4px)}
+    .svc-note{margin-top:2.2rem;text-align:center;font-weight:600;color:var(--color-text-muted);font-size:var(--text-base);max-width:unset}
     .svc-note strong{color:var(--color-text)}
 
     /* ─── PROCESO: timeline con progreso al hacer scroll ───── */
@@ -402,8 +446,8 @@
     [data-theme="dark"] .step-card.step-active .step-num{
       box-shadow:0 0 0 5px rgba(99,102,241,.28),0 8px 28px rgba(99,102,241,.55)
     }
-    .step-card h3{font-size:1.02rem;font-weight:800}
-    .step-card p{margin-top:.55rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+    .step-card h3{font-size:clamp(1.15rem,1.08rem + .35vw,1.35rem);font-weight:700}
+    .step-card p{margin-top:.55rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-base);max-width:unset}
 
     /* ─── SOBRE ────────────────────────────────────────────── */
     .about-grid{display:grid;gap:1rem;align-items:start}
@@ -430,8 +474,8 @@
       content:'“';position:absolute;top:.4rem;right:1.2rem;font-size:4.5rem;font-weight:900;
       color:var(--color-accent);opacity:.14;line-height:1;font-family:Georgia,serif
     }
-    .testi blockquote{font-size:1.02rem;font-weight:700;letter-spacing:-.025em;line-height:1.35}
-    .testi p{margin-top:.85rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm);max-width:unset}
+    .testi blockquote{font-size:clamp(1.15rem,1.08rem + .35vw,1.35rem);font-weight:700;letter-spacing:-.025em;line-height:1.35}
+    .testi p{margin-top:.85rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-base);max-width:unset}
     .testi-name{margin-top:1.25rem;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:.7rem}
     .testi-avatar{
       width:38px;height:38px;border-radius:999px;flex-shrink:0;
@@ -449,7 +493,7 @@
     details.faq[open]{box-shadow:var(--shadow-sm)}
     details.faq summary{
       display:flex;align-items:center;justify-content:space-between;gap:1rem;
-      padding:1.2rem 1.4rem;cursor:pointer;font-weight:700;font-size:.97rem;list-style:none
+      padding:1.2rem 1.4rem;cursor:pointer;font-weight:700;font-size:var(--text-base);list-style:none
     }
     details.faq summary::-webkit-details-marker{display:none}
     /* NUEVO: faq-animada — apertura suave + indicador en summary activo.
@@ -467,7 +511,7 @@
       transition:background var(--t),border-color var(--t),transform .35s ease
     }
     details.faq[open] .faq-icon{background:var(--color-accent);border-color:var(--color-accent);color:#fff;transform:rotate(45deg)}
-    .faq-body{padding:0 1.4rem 1.3rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-sm)}
+    .faq-body{padding:0 1.4rem 1.3rem;color:var(--color-text-muted);font-weight:500;font-size:var(--text-base)}
 
     /* ─── CTA FINAL ────────────────────────────────────────── */
     .cta-band{
@@ -586,78 +630,6 @@
       box-shadow:0 12px 44px rgba(99,102,241,0.18),var(--shadow-md)
     }
 
-    /* NUEVO: roi-calculator — calculadora ROI interactiva */
-    .roi-grid{display:grid;gap:2.5rem;margin-top:2.5rem;align-items:start}
-    .roi-sliders{display:flex;flex-direction:column;gap:1.5rem}
-    .roi-slider-group{display:flex;flex-direction:column;gap:.55rem}
-    .roi-slider-label{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:var(--text-sm)}
-    .roi-slider-val{
-      background:var(--color-accent);color:#fff;
-      padding:.15rem .65rem;border-radius:999px;
-      font-size:var(--text-xs);font-weight:800;min-width:4ch;text-align:center
-    }
-    .roi-slider{
-      -webkit-appearance:none;appearance:none;
-      width:100%;height:6px;border-radius:999px;
-      background:var(--color-divider);outline:none;cursor:pointer;transition:background .3s ease
-    }
-    .roi-slider::-webkit-slider-thumb{
-      -webkit-appearance:none;appearance:none;
-      width:22px;height:22px;border-radius:999px;
-      background:var(--color-accent);
-      cursor:pointer;box-shadow:0 2px 10px rgba(99,102,241,.4);
-      border:2px solid #fff;transition:transform .2s ease
-    }
-    .roi-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
-    .roi-slider::-moz-range-thumb{
-      width:22px;height:22px;border-radius:999px;border:2px solid #fff;
-      background:var(--color-accent);
-      cursor:pointer;box-shadow:0 2px 10px rgba(99,102,241,.4)
-    }
-    .roi-results{
-      background:var(--color-card);border:1px solid var(--color-card-border);
-      border-radius:var(--radius-lg);padding:clamp(1.5rem,4vw,2.2rem);box-shadow:var(--shadow-sm)
-    }
-    .roi-result-row{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:.8rem 0;border-bottom:1px solid var(--color-divider);gap:1rem
-    }
-    .roi-result-row:last-child{border-bottom:0}
-    .roi-result-label{font-weight:600;font-size:var(--text-sm);color:var(--color-text-muted);display:flex;align-items:center;gap:.55rem}
-    .roi-icon{
-      display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;
-      border-radius:var(--radius-sm);background:var(--color-tag-bg);color:var(--color-accent-dark)
-    }
-    [data-theme="dark"] .roi-icon{background:rgba(99,102,241,.14);color:var(--color-accent-dark)}
-    .roi-icon svg{width:14px;height:14px}
-    .roi-result-val{font-weight:400;font-size:1.15rem;letter-spacing:-.03em;color:var(--color-text)}
-    .roi-result-val.positive{color:#16A34A}
-    [data-theme="dark"] .roi-result-val.positive{color:#4ADE80}
-    .roi-payback-chip{
-      display:inline-block;background:var(--color-tag-bg);color:var(--color-accent);
-      padding:.2rem .75rem;border-radius:999px;font-weight:700;font-size:var(--text-xs)
-    }
-    [data-theme="dark"] .roi-payback-chip{color:var(--color-accent-dark)}
-    .roi-bar-wrap{margin-top:1.5rem}
-    .roi-bar-label{
-      display:flex;justify-content:space-between;
-      font-weight:700;font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:.45rem
-    }
-    .roi-bar-track{height:10px;background:var(--color-divider);border-radius:999px;overflow:hidden}
-    .roi-bar-fill{
-      height:100%;width:0;border-radius:inherit;
-      background:var(--color-accent);
-      transition:width 1.1s cubic-bezier(.16,1,.3,1)
-    }
-    .roi-microcopy{
-      margin-top:1.1rem;padding:.75rem 1rem;border-radius:var(--radius-md);
-      font-size:var(--text-xs);font-weight:600;line-height:1.5;
-      background:rgba(59,130,246,.08);color:var(--color-accent);
-      border-left:3px solid var(--color-accent);
-      transition:opacity .35s ease
-    }
-    [data-theme="dark"] .roi-microcopy{color:var(--color-accent-dark);background:rgba(99,102,241,.1)}
-    .roi-microcopy.fading{opacity:0}
 
     /* about-profile — foto grande portrait + bio alineada */
     .about-profile{display:flex;flex-direction:column;align-items:center;gap:1.75rem}
@@ -709,7 +681,6 @@
       .step-num{top:-4rem;left:calc(50% - 1.3rem)}
       .about-grid{grid-template-columns:1fr}
       .about-content{grid-template-columns:460px;justify-content:center;align-items:start}
-      .roi-grid{grid-template-columns:1fr;max-width:680px;margin-inline:auto}
       .testi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
       .faq-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .cta-grid{grid-template-columns:1.2fr .85fr}
@@ -732,7 +703,30 @@
       .hero-dots{background-size:22px 22px}
       .hero-stats{gap:1.5rem 2.5rem}
       .svc-card,.step-card,.testi,.pain-card{padding:1.4rem}
+      .svc-card{--pad:1.4rem}
     }
+
+    /* ─── Hero secondary CTA — texto subordinado ───────────── */
+    .hero-cta-link{
+      font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);
+      display:inline-flex;align-items:center;gap:.3rem;padding:.5rem 0;
+      border-bottom:1px solid transparent;
+      transition:color var(--t),border-color var(--t)
+    }
+    .hero-cta-link:hover{color:var(--color-accent);border-bottom-color:var(--color-accent)}
+
+    /* ─── About credibility bullets ────────────────────────── */
+    .about-creds{list-style:none;margin:.75rem 0 1rem;display:flex;flex-direction:column;gap:.3rem}
+    .about-creds li{font-size:.82rem;color:var(--color-text-muted);font-weight:500;padding-left:1rem;position:relative}
+    .about-creds li::before{content:'•';position:absolute;left:0;color:var(--color-accent)}
+
+
+    /* ─── CTA final trust line ──────────────────────────────── */
+    .cta-trust{font-size:var(--text-xs);color:rgba(255,255,255,.5);margin-top:.75rem;font-weight:500}
+    [data-theme="dark"] .cta-trust{color:var(--color-text-muted)}
+
+    /* ─── Dark mode: separador visual en sección Nosotros ───── */
+    [data-theme="dark"] #nosotros{border-top:1px solid rgba(238,240,255,0.12)}
   </style>
 </head>
 <body>
@@ -779,7 +773,7 @@
       <p class="hero-sub" data-i18n="hero_sub">Cada semana se van horas en tareas que la tecnología puede hacer sola. Diseñamos automatizaciones, agentes de IA y sistemas digitales que recuperan ese tiempo y lo convierten en ventas — sin tecnicismos ni promesas vacías.</p>
       <div class="btn-row" style="justify-content:center">
         <a class="btn btn-primary" href="#cta" data-i18n="hero_cta1">Empieza con un diagnóstico gratis</a>
-        <a class="btn btn-ghost" href="#servicios" data-i18n="hero_cta2">Ver servicios</a>
+        <a class="hero-cta-link" href="#servicios" data-i18n="hero_cta2">Ver servicios</a>
       </div>
       <div class="hero-stats reveal">
         <div class="hero-stat">
@@ -868,11 +862,12 @@
           <span data-i18n="svc1_tag2">Cotizaciones al instante</span>
           <span data-i18n="svc1_tag3">Seguimiento sin fugas</span>
         </div>
+        <a class="svc-link" href="#cta" data-i18n="svc_link">Quiero esto en mi negocio</a>
       </article>
       <article class="card svc-card reveal reveal-d1">
-        <!-- cpu: chip con pines = agente/IA -->
+        <!-- bot: cabeza de robot con antena = agente/IA -->
         <div class="svc-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="12" cy="3" r="1"/><circle cx="9" cy="13.5" r="1"/><circle cx="15" cy="13.5" r="1"/><path d="M9.5 17h5"/></svg>
         </div>
         <h3 data-i18n="svc2_t">Asistentes y agentes de IA</h3>
         <p data-i18n="svc2_d">Un agente entrenado con el conocimiento de tu negocio que conversa con tus clientes, resuelve dudas y agenda citas a cualquier hora — en tu web o en tu WhatsApp.</p>
@@ -881,11 +876,12 @@
           <span data-i18n="svc2_tag2">Disponible 24/7</span>
           <span data-i18n="svc2_tag3">Integrado a tu CRM</span>
         </div>
+        <a class="svc-link" href="#cta" data-i18n="svc_link">Quiero esto en mi negocio</a>
       </article>
       <article class="card svc-card reveal reveal-d2">
-        <!-- layout: estructura de página web = landing/funnel -->
+        <!-- funnel: embudo = webs y funnels de venta -->
         <div class="svc-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
         </div>
         <h3 data-i18n="svc3_t">Webs y funnels de venta</h3>
         <p data-i18n="svc3_d">Páginas construidas para una sola cosa: convertir. De la landing de tu servicio al funnel completo, con diseño elegante, carga rápida y resultados que puedes medir.</p>
@@ -894,11 +890,12 @@
           <span data-i18n="svc3_tag2">Funnels completos</span>
           <span data-i18n="svc3_tag3">Diseño medible</span>
         </div>
+        <a class="svc-link" href="#cta" data-i18n="svc_link">Quiero esto en mi negocio</a>
       </article>
       <article class="card svc-card reveal reveal-d3">
-        <!-- layers: capas apiladas = software a medida -->
+        <!-- dashboard: panel con gráficas = software a medida -->
         <div class="svc-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2.5"/><line x1="8.5" y1="3" x2="8.5" y2="21"/><line x1="12.5" y1="16.5" x2="12.5" y2="13"/><line x1="15.5" y1="16.5" x2="15.5" y2="10"/><line x1="18.5" y1="16.5" x2="18.5" y2="7"/></svg>
         </div>
         <h3 data-i18n="svc4_t">Sistemas y software propio</h3>
         <p data-i18n="svc4_d">Cuando ninguna herramienta genérica encaja, la construimos: un CRM hecho para ti, dashboards de control y herramientas internas que se adaptan a tu operación — y no al revés.</p>
@@ -907,88 +904,13 @@
           <span data-i18n="svc4_tag2">Dashboards de control</span>
           <span data-i18n="svc4_tag3">Operación simplificada</span>
         </div>
+        <a class="svc-link" href="#cta" data-i18n="svc_link">Quiero esto en mi negocio</a>
       </article>
     </div>
     <p class="svc-note reveal" data-i18n-html="svc_note">¿Tu caso es distinto? Mejor. <strong>Cuéntanoslo y diseñamos la solución contigo.</strong></p>
   </div>
 </section>
 
-<!-- NUEVO: roi-calculator ═══════════════════════════════════ -->
-<section class="section section-alt roi-section" id="roi-calculator" aria-labelledby="roi-title">
-  <div class="wrap">
-    <span class="eyebrow reveal" data-i18n="roi_eyebrow">Calcula tu ahorro</span>
-    <h2 class="heading reveal" id="roi-title" data-i18n="roi_title">¿Cuántas horas (y dólares) estás perdiendo cada semana?</h2>
-    <div class="roi-grid">
-      <!-- Sliders -->
-      <div class="roi-sliders reveal reveal-d1">
-        <div class="roi-slider-group">
-          <label class="roi-slider-label" for="roi-hours">
-            <span data-i18n="roi_hours_label">Horas repetitivas por semana</span>
-            <span class="roi-slider-val" id="roi-hours-val">10h</span>
-          </label>
-          <input class="roi-slider" type="range" id="roi-hours" min="1" max="40" value="10" step="1" aria-valuemin="1" aria-valuemax="40" aria-valuenow="10">
-        </div>
-        <div class="roi-slider-group">
-          <label class="roi-slider-label" for="roi-rate">
-            <span data-i18n="roi_rate_label">Valor de tu hora ($)</span>
-            <span class="roi-slider-val" id="roi-rate-val">$50</span>
-          </label>
-          <input class="roi-slider" type="range" id="roi-rate" min="10" max="200" value="50" step="5" aria-valuemin="10" aria-valuemax="200" aria-valuenow="50">
-        </div>
-        <!-- Barra de progreso -->
-        <div class="roi-bar-wrap">
-          <div class="roi-bar-label">
-            <span data-i18n="roi_bar_label">Tiempo recuperado con automatización</span>
-            <span data-i18n="roi_bar_pct">85%</span>
-          </div>
-          <div class="roi-bar-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-            <div class="roi-bar-fill" id="roi-bar-fill"></div>
-          </div>
-        </div>
-      </div>
-      <!-- Resultados -->
-      <div class="roi-results reveal reveal-d2">
-        <div class="roi-result-row">
-          <span class="roi-result-label">
-            <span class="roi-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </span>
-            <span data-i18n="roi_cost_label">Coste actual por mes</span>
-          </span>
-          <span class="roi-result-val" id="roi-cost">$2,000</span>
-        </div>
-        <div class="roi-result-row">
-          <span class="roi-result-label">
-            <span class="roi-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            </span>
-            <span data-i18n="roi_auto_label">Con automatización (85% recuperado)</span>
-          </span>
-          <span class="roi-result-val" id="roi-auto">$300</span>
-        </div>
-        <div class="roi-result-row">
-          <span class="roi-result-label">
-            <span class="roi-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            </span>
-            <span data-i18n="roi_save_label">Ahorro mensual estimado</span>
-          </span>
-          <span class="roi-result-val positive" id="roi-save">$1,700</span>
-        </div>
-        <div class="roi-result-row">
-          <span class="roi-result-label">
-            <span class="roi-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </span>
-            <span data-i18n="roi_payback_label">Payback estimado</span>
-          </span>
-          <span class="roi-payback-chip" id="roi-payback-val">&lt; 60 días</span>
-        </div>
-        <div class="roi-microcopy" id="roi-microcopy" aria-live="polite"></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══ PROCESO ══════════════════════════════════════════════ -->
 <section class="section" id="proceso" aria-labelledby="process-title">
@@ -1034,6 +956,11 @@
         <div class="about-bio">
           <strong data-i18n="bio_name">Felipe Sáenz</strong>
           <em data-i18n="bio_role">Fundador · merci.ai</em>
+          <ul class="about-creds">
+            <li data-i18n="bio_cred1">50+ automatizaciones implementadas</li>
+            <li data-i18n="bio_cred2">Clientes en ES · EN · DE</li>
+            <li data-i18n="bio_cred3">Especialista en n8n, Make, OpenAI</li>
+          </ul>
           <p data-i18n="bio_text">Especialista en automatización, IA y diseño digital con base en Alemania. Trabajo en la intersección entre marketing, tecnología y sistemas — construyendo soluciones que no solo funcionan, sino que el equipo entiende y mantiene. Atiendo en español, inglés y alemán.</p>
           <div class="about-social">
             <a href="#" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -1127,6 +1054,7 @@
             <a class="btn btn-primary" href="https://calendly.com" target="_blank" rel="noopener noreferrer" data-i18n="cta_btn1">Reservar llamada gratuita</a>
             <a class="btn btn-ghost" href="https://wa.me" target="_blank" rel="noopener noreferrer" data-i18n="cta_btn2">Escribir por WhatsApp</a>
           </div>
+          <p class="cta-trust" data-i18n="cta_trust">Respuesta habitual en menos de 24 h · Atención en ES, EN, DE</p>
           <!-- NUEVO: cta-social-proof -->
           <p class="cta-live"><span class="cta-live-dot" aria-hidden="true"></span><span class="cta-live-text" data-i18n="live1">3 empresas iniciaron su diagnóstico esta semana</span></p>
         </div>
@@ -1178,8 +1106,8 @@ const I18N = {
 
     hero_eyebrow: "✦  Automatización e IA para negocios reales",
     hero_h1: 'Menos trabajo manual. Más <em>crecimiento</em>.',
-    hero_sub: "Cada semana se van horas en tareas que la tecnología puede hacer sola. Diseñamos automatizaciones, agentes de IA y sistemas digitales que recuperan ese tiempo y lo convierten en ventas — sin tecnicismos ni promesas vacías.",
-    hero_cta1: "Empieza con un diagnóstico gratis", hero_cta2: "Ver servicios",
+    hero_sub: "Construimos automatizaciones y agentes de IA que gestionan el trabajo repetitivo — para que puedas enfocarte en crecer.",
+    hero_cta1: "Agenda una llamada estratégica gratis", hero_cta2: "Ver qué automatizamos →",
     hero_note: "Respuesta rápida · Diagnóstico gratuito · Sin compromiso",
     proof1: "automatizaciones e integraciones implementadas",
     proof2: "tus sistemas atienden, responden y venden sin parar",
@@ -1207,17 +1135,18 @@ const I18N = {
     svc_title: 'Lo repetitivo se automatiza. Lo importante <em>se potencia</em>.',
     svc_sub: "Nada de demos que mueren en una carpeta. Diseñamos e implementamos sistemas que viven dentro de tu negocio, conectados con las herramientas que ya usas, y te los entregamos documentados para que sean tuyos de verdad.",
     svc1_t: "Automatización de procesos",
-    svc1_d: "Capturamos leads, enviamos cotizaciones, calificamos prospectos y agendamos citas por ti. Conectamos tus herramientas para que el trabajo fluya de punta a punta, solo.",
+    svc1_d: "Elimina tareas repetitivas con flujos automatizados que funcionan sin intervención manual.",
     svc1_tag1: "Leads en automático", svc1_tag2: "Cotizaciones al instante", svc1_tag3: "Seguimiento sin fugas",
     svc2_t: "Asistentes y agentes de IA",
-    svc2_d: "Un agente entrenado con el conocimiento de tu negocio que conversa con tus clientes, resuelve dudas y agenda citas a cualquier hora — en tu web o en tu WhatsApp.",
+    svc2_d: "Agentes de IA que responden, califican, agendan y hacen seguimiento — las 24 horas.",
     svc2_tag1: "Agente de WhatsApp", svc2_tag2: "Disponible 24/7", svc2_tag3: "Integrado a tu CRM",
     svc3_t: "Webs y funnels de venta",
-    svc3_d: "Páginas construidas para una sola cosa: convertir. De la landing de tu servicio al funnel completo, con diseño elegante, carga rápida y resultados que puedes medir.",
+    svc3_d: "Conecta tus herramientas en pipelines que mueven leads y datos de forma automática.",
     svc3_tag1: "Landings que convierten", svc3_tag2: "Funnels completos", svc3_tag3: "Diseño medible",
     svc4_t: "Sistemas y software propio",
-    svc4_d: "Cuando ninguna herramienta genérica encaja, la construimos: un CRM hecho para ti, dashboards de control y herramientas internas que se adaptan a tu operación — y no al revés.",
+    svc4_d: "Dashboards y herramientas internas a medida, construidos para cómo trabaja tu equipo.",
     svc4_tag1: "CRM hecho para ti", svc4_tag2: "Dashboards de control", svc4_tag3: "Operación simplificada",
+    svc_link: "Quiero esto en mi negocio",
     svc_note: '¿Tu caso es distinto? Mejor. <strong>Cuéntanoslo y diseñamos la solución contigo.</strong>',
 
     process_eyebrow: "Cómo trabajamos",
@@ -1267,40 +1196,27 @@ const I18N = {
     faq6_q: "¿Qué pasa después de la entrega?",
     faq6_a: "Todo queda documentado y explicado para que sea tuyo de verdad. Y si quieres, ofrecemos soporte y mejora continua para que el sistema crezca con tu negocio.",
 
-    cta_eyebrow: "Siguiente paso",
-    cta_title: 'Tu competencia ya usa IA. La diferencia es <em>hacerla útil</em>.',
-    cta_sub: "Si quieres una automatización concreta, un asistente que venda por ti o una hoja de ruta clara para aplicar IA sin ruido, este es el punto de partida.",
-    cta_side: "Agenda una llamada gratuita de 30 minutos y vemos qué tiene sentido para tu caso.",
-    cta_btn1: "Reservar llamada gratuita", cta_btn2: "Escribir por WhatsApp",
+    cta_eyebrow: "¿Listo para empezar?",
+    cta_title: 'Deja de perder horas en tareas que se <em>gestionan solas</em>.',
+    cta_sub: "La primera llamada es gratuita. Sin compromiso. Vemos juntos dónde están tus oportunidades de automatización.",
+    cta_side: "Agenda una llamada estratégica gratuita de 30 minutos y encontramos tu mejor punto de partida.",
+    cta_btn1: "Agenda una llamada estratégica", cta_btn2: "Escribir por WhatsApp",
+    cta_trust: "Respuesta habitual en menos de 24 h · Atención en ES, EN, DE",
     // NUEVO: cta-social-proof — mensajes rotativos
     live1: "3 empresas iniciaron su diagnóstico esta semana",
     live2: "2 llamadas de diagnóstico agendadas hoy",
     live3: "5 automatizaciones entregadas este mes",
     live4: "1 agente IA puesto en marcha esta semana",
 
-    // NUEVO: roi-calculator
-    roi_eyebrow: "Calcula tu ahorro",
-    roi_title: "¿Cuántas horas (y dólares) estás perdiendo cada semana?",
-    roi_hours_label: "Horas repetitivas por semana",
-    roi_rate_label: "Valor de tu hora ($)",
-    roi_cost_label: "Coste actual por mes",
-    roi_auto_label: "Con automatización (85% recuperado)",
-    roi_save_label: "Ahorro mensual estimado",
-    roi_payback_label: "Payback estimado",
-    roi_payback1: "< 30 días",
-    roi_payback2: "< 60 días",
-    roi_payback3: "< 90 días",
-    roi_bar_label: "Tiempo recuperado con automatización",
-    roi_bar_pct: "85%",
-    roi_copy1: "Ya cubre el coste de una automatización puntual.",
-    roi_copy2: "Suficiente para implementar un sistema completo.",
-    roi_copy3: "Estás dejando pasar una ventaja competitiva real.",
     // NUEVO: about-profile
     bio_name: "Felipe Sáenz",
     bio_role: "Fundador · merci.ai",
     bio_text: "Especialista en automatización, IA y diseño digital con base en Alemania. Trabajo en la intersección entre marketing, tecnología y sistemas — construyendo soluciones que no solo funcionan, sino que el equipo entiende y mantiene. Atiendo en español, inglés y alemán.",
     bio_linkedin: "LinkedIn",
     bio_email: "Email",
+    bio_cred1: "50+ automatizaciones implementadas",
+    bio_cred2: "Clientes en ES · EN · DE",
+    bio_cred3: "Especialista en n8n, Make, OpenAI",
 
     footer_tag: "Automatización · Agentes IA · Webs · Software a medida",
     footer_copy: "© 2026 merci.ai · Por Felipe Saenz · @felipesaenzmkt"
@@ -1314,8 +1230,8 @@ const I18N = {
 
     hero_eyebrow: "✦  Automation & AI for real businesses",
     hero_h1: 'Less manual work. More <em>growth</em>.',
-    hero_sub: "Every week, hours disappear into tasks technology could handle on its own. We design automations, AI agents and digital systems that win that time back and turn it into sales — no jargon, no empty promises.",
-    hero_cta1: "Start with a free diagnosis", hero_cta2: "See services",
+    hero_sub: "We build custom automations and AI agents that handle your repetitive work — so you can focus on growth.",
+    hero_cta1: "Book a free strategy call", hero_cta2: "See what we automate →",
     hero_note: "Fast reply · Free diagnosis · No strings attached",
     proof1: "automations and integrations delivered",
     proof2: "your systems answer, follow up and sell around the clock",
@@ -1343,17 +1259,18 @@ const I18N = {
     svc_title: 'The repetitive gets automated. What matters <em>gets amplified</em>.',
     svc_sub: "No demos that die in a folder. We design and implement systems that live inside your business, connected to the tools you already use — delivered documented, so they're truly yours.",
     svc1_t: "Process automation",
-    svc1_d: "We capture leads, send quotes, qualify prospects and book appointments for you. We connect your tools so work flows end to end, on its own.",
+    svc1_d: "Eliminate repetitive tasks with automated workflows that run without manual input.",
     svc1_tag1: "Leads on autopilot", svc1_tag2: "Instant quotes", svc1_tag3: "Leak-proof follow-up",
     svc2_t: "AI assistants & agents",
-    svc2_d: "An agent trained on your business knowledge that talks to your customers, answers questions and books appointments at any hour — on your website or your WhatsApp.",
+    svc2_d: "Custom AI agents that answer, qualify, schedule, and follow up — 24/7.",
     svc2_tag1: "WhatsApp agent", svc2_tag2: "Available 24/7", svc2_tag3: "Plugged into your CRM",
     svc3_t: "Websites & sales funnels",
-    svc3_d: "Pages built for one thing: converting. From your service landing page to the full funnel — elegant design, fast loading and results you can measure.",
+    svc3_d: "Connect your tools into seamless pipelines that move leads and data automatically.",
     svc3_tag1: "Landings that convert", svc3_tag2: "Complete funnels", svc3_tag3: "Measurable design",
     svc4_t: "Systems & custom software",
-    svc4_d: "When no off-the-shelf tool fits, we build it: a CRM made for you, control dashboards and internal tools that adapt to your operation — not the other way around.",
+    svc4_d: "Tailored dashboards and internal tools built around how your team actually works.",
     svc4_tag1: "A CRM made for you", svc4_tag2: "Control dashboards", svc4_tag3: "Streamlined operations",
+    svc_link: "I want this for my business",
     svc_note: 'Is your case different? Even better. <strong>Tell us about it and we\'ll design the solution with you.</strong>',
 
     process_eyebrow: "How we work",
@@ -1403,40 +1320,27 @@ const I18N = {
     faq6_q: "What happens after delivery?",
     faq6_a: "Everything is documented and explained so it's truly yours. And if you want, we offer support and continuous improvement so the system grows with your business.",
 
-    cta_eyebrow: "Next step",
-    cta_title: 'Your competitors already use AI. The difference is <em>making it useful</em>.',
-    cta_sub: "If you want a concrete automation, an assistant that sells for you, or a clear roadmap to apply AI without the noise, this is where it starts.",
-    cta_side: "Book a free 30-minute call and we'll see what makes sense for your case.",
-    cta_btn1: "Book a free call", cta_btn2: "Message us on WhatsApp",
+    cta_eyebrow: "Ready to start?",
+    cta_title: 'Stop losing hours to tasks that <em>run themselves</em>.',
+    cta_sub: "First call is free. No commitment. We'll map your automation opportunities together.",
+    cta_side: "Book a free 30-minute strategy call — let's find your best automation opportunities.",
+    cta_btn1: "Book a free strategy call", cta_btn2: "Message us on WhatsApp",
+    cta_trust: "Usually responds within 24 hours · Available in ES, EN, DE",
     // NUEVO: cta-social-proof — mensajes rotativos
     live1: "3 businesses started their diagnosis this week",
     live2: "2 diagnosis calls booked today",
     live3: "5 automations delivered this month",
     live4: "1 AI agent launched this week",
 
-    // NUEVO: roi-calculator
-    roi_eyebrow: "Calculate your savings",
-    roi_title: "How many hours (and dollars) are you losing every week?",
-    roi_hours_label: "Repetitive hours per week",
-    roi_rate_label: "Your hourly rate ($)",
-    roi_cost_label: "Current monthly cost",
-    roi_auto_label: "With automation (85% recovered)",
-    roi_save_label: "Estimated monthly savings",
-    roi_payback_label: "Estimated payback",
-    roi_payback1: "< 30 days",
-    roi_payback2: "< 60 days",
-    roi_payback3: "< 90 days",
-    roi_bar_label: "Time recovered with automation",
-    roi_bar_pct: "85%",
-    roi_copy1: "Already covers the cost of a one-off automation.",
-    roi_copy2: "Enough to implement a complete system.",
-    roi_copy3: "You're letting a real competitive advantage pass by.",
     // NUEVO: about-profile
     bio_name: "Felipe Sáenz",
     bio_role: "Founder · merci.ai",
     bio_text: "Automation, AI and digital design specialist based in Germany. I work at the intersection of marketing, technology and systems — building solutions that not only work, but that your team actually understands and maintains. Available in Spanish, English and German.",
     bio_linkedin: "LinkedIn",
     bio_email: "Email",
+    bio_cred1: "50+ automation systems delivered",
+    bio_cred2: "Clients across ES · EN · DE markets",
+    bio_cred3: "n8n, Make, OpenAI specialist",
 
     footer_tag: "Automation · AI agents · Websites · Custom software",
     footer_copy: "© 2026 merci.ai · By Felipe Saenz · @felipesaenzmkt"
@@ -1682,76 +1586,6 @@ function runTypewriter() {
   });
 })();
 
-/* NUEVO: roi-calculator — calcula y actualiza resultados en tiempo real */
-(function roiCalc() {
-  const section = document.getElementById('roi-calculator');
-  if (!section) return;
-  const sliderHours = document.getElementById('roi-hours');
-  const sliderRate  = document.getElementById('roi-rate');
-  const valHours    = document.getElementById('roi-hours-val');
-  const valRate     = document.getElementById('roi-rate-val');
-  const elCost      = document.getElementById('roi-cost');
-  const elAuto      = document.getElementById('roi-auto');
-  const elSave      = document.getElementById('roi-save');
-  const elPayback   = document.getElementById('roi-payback-val');
-  const elBar       = document.getElementById('roi-bar-fill');
-  const elCopy      = document.getElementById('roi-microcopy');
-  let barAnimated   = false;
-
-  function fmt(n) {
-    return '$ ' + Math.round(n).toLocaleString('en-US');
-  }
-
-  function update() {
-    const hours = +sliderHours.value;
-    const rate  = +sliderRate.value;
-    const costPerMonth = hours * rate * 4;
-    const withAuto     = costPerMonth * 0.15;
-    const savings      = costPerMonth - withAuto;
-    const d = I18N[lang];
-
-    valHours.textContent = hours + 'h';
-    valRate.textContent  = '$' + rate;
-    elCost.textContent   = fmt(costPerMonth);
-    elAuto.textContent   = fmt(withAuto);
-    elSave.textContent   = fmt(savings);
-    sliderHours.setAttribute('aria-valuenow', hours);
-    sliderRate.setAttribute('aria-valuenow', rate);
-
-    if (savings < 200)      elPayback.textContent = d.roi_payback1 || '< 30 días';
-    else if (savings < 800) elPayback.textContent = d.roi_payback2 || '< 60 días';
-    else                    elPayback.textContent = d.roi_payback3 || '< 90 días';
-
-    if (barAnimated) elBar.style.width = '85%';
-
-    const newCopy = savings < 200 ? d.roi_copy1 : savings < 800 ? d.roi_copy2 : d.roi_copy3;
-    if (elCopy.textContent !== newCopy) {
-      elCopy.classList.add('fading');
-      setTimeout(() => { elCopy.textContent = newCopy; elCopy.classList.remove('fading'); }, 350);
-    }
-  }
-
-  sliderHours.addEventListener('input', update);
-  sliderRate.addEventListener('input', update);
-
-  // Animar la barra cuando la sección entre en vista
-  const barIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      barAnimated = true;
-      elBar.style.width = '85%';
-      update();
-      barIO.unobserve(e.target);
-    });
-  }, { threshold: .2 });
-  barIO.observe(section);
-
-  // Actualizar textos dinámicos al cambiar idioma
-  document.getElementById('lang-es').addEventListener('click', () => setTimeout(update, 30));
-  document.getElementById('lang-en').addEventListener('click', () => setTimeout(update, 30));
-
-  update();
-})();
 
 /* NUEVO: about-profile — animar foto al entrar en vista */
 (function profileReveal() {
@@ -1769,6 +1603,37 @@ function runTypewriter() {
 applyTheme(theme);
 applyLang(lang);
 runTypewriter();
+
+/* ─── Contenido editable (Decap CMS) ───────────────────────────
+   Los textos viven en content/es.json y content/en.json y los
+   enlaces/imágenes en content/general.json, editables desde /admin.
+   El objeto I18N inline queda solo como fallback si el fetch falla
+   (p. ej. abriendo el archivo sin servidor). El JSON manda. */
+(async function loadCmsContent() {
+  try {
+    const [es, en, general] = await Promise.all(
+      ['content/es.json', 'content/en.json', 'content/general.json']
+        .map(u => fetch(u).then(r => { if (!r.ok) throw new Error(u); return r.json(); }))
+    );
+    Object.assign(I18N.es, es);
+    Object.assign(I18N.en, en);
+    applyLang(lang);
+
+    if (general.bio_photo) {
+      const photo = document.querySelector('.about-photo');
+      if (photo) photo.src = general.bio_photo;
+    }
+    if (general.whatsapp_url) {
+      document.querySelectorAll('a[href^="https://wa.me"]').forEach(a => a.href = general.whatsapp_url);
+    }
+    if (general.calendly_url) {
+      document.querySelectorAll('a[href^="https://calendly.com"]').forEach(a => a.href = general.calendly_url);
+    }
+    if (general.contact_email) {
+      document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.href = 'mailto:' + general.contact_email);
+    }
+  } catch (e) { /* sin red o sin servidor: se usa el contenido inline */ }
+})();
 </script>
 
 </body>
