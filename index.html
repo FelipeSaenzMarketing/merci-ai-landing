@@ -55,9 +55,9 @@
       --text-xs:   clamp(.75rem,  .72rem + .13vw, .85rem);
       --text-sm:   clamp(.875rem, .84rem + .18vw, 1rem);
       --text-base: clamp(1rem,    .96rem + .22vw, 1.075rem);
-      --text-lg:   clamp(1.1rem,  1.02rem + .5vw, 1.35rem);
+      --text-lg:   clamp(1.15rem, 1.02rem + .6vw, 1.5rem);
       --text-xl:   clamp(2rem,   1.35rem + 2.6vw, 3.4rem);
-      --text-hero: clamp(2.6rem,  1.6rem + 4vw, 4.4rem);
+      --text-hero: clamp(2.9rem,  1.3rem + 6vw, 5.75rem);
     }
 
     /* ─── Reset & base ─────────────────────────────────────── */
@@ -197,16 +197,20 @@
 
     .hero-grid{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;width:100%}
     .hero-grid>.reveal{width:100%;display:flex;flex-direction:column;align-items:center}
-    .hero-h1{font-size:var(--text-hero);font-weight:800;line-height:1.04;letter-spacing:-.035em;max-width:15ch;margin-inline:auto;margin-top:1.5rem}
-    .hero-sub{margin-top:1.5rem;max-width:56ch;margin-inline:auto;color:var(--color-text-muted);font-weight:500;font-size:var(--text-lg);text-align:center}
+    .hero-h1{font-size:var(--text-hero);font-weight:800;line-height:1.02;letter-spacing:-.035em;max-width:20ch;margin-inline:auto;margin-top:1.75rem}
+    .hero-sub{margin-top:1.75rem;max-width:64ch;margin-inline:auto;color:var(--color-text-muted);font-weight:500;font-size:var(--text-lg);line-height:1.55;text-align:center}
 
-    .hero-stats{display:flex;flex-wrap:wrap;gap:2rem 3.5rem;justify-content:center;margin-top:3.5rem;padding-top:2.75rem;border-top:1px solid var(--color-divider)}
-    .hero-stat{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+    .hero-section .btn-row{margin-top:2.75rem;gap:1rem}
+    .hero-section .btn,.hero-section .hero-cta-link{min-height:56px;padding:1.05rem 1.9rem;font-size:var(--text-base)}
+
+    .hero-stats{display:flex;flex-wrap:wrap;gap:1.75rem 0;justify-content:center;align-items:stretch;margin-top:3.75rem;padding-top:3rem;border-top:1px solid var(--color-divider);width:100%;max-width:760px;margin-inline:auto}
+    .hero-stat{flex:1 1 0;min-width:140px;display:flex;flex-direction:column;align-items:center;gap:.4rem;padding-inline:1.75rem}
+    @media(min-width:560px){.hero-stat + .hero-stat{border-left:1px solid var(--color-divider)}}
     .hero-stat strong{
-      display:block;font-weight:800;font-size:clamp(1.9rem,1.1rem + 2vw,2.7rem);
+      display:block;font-weight:800;font-size:clamp(2.2rem,1.3rem + 2.6vw,3.1rem);
       letter-spacing:-.03em;line-height:1;color:var(--color-accent-text)
     }
-    .hero-stat span{display:block;margin-top:.3rem;color:var(--color-text-muted);font-size:var(--text-xs);font-weight:600;line-height:1.35;max-width:16ch;text-transform:uppercase;letter-spacing:.06em}
+    .hero-stat span{display:block;margin-top:.35rem;color:var(--color-text-muted);font-size:var(--text-xs);font-weight:600;line-height:1.35;max-width:16ch;text-transform:uppercase;letter-spacing:.06em}
 
     /* ─── MARQUEE de integraciones ─────────────────────────── */
     .tools-band{padding:2.25rem 0;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);overflow:hidden;background:var(--color-bg-soft)}
